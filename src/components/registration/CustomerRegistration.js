@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useHistory} from 'react-router-dom';
-import CustomerService from "../services/CustomerService";//../moves us out of the current directory this file is in
+import CustomerService from "../../services/CustomerService";//../moves us out of the current directory this file is in
 
 const CustomerRegistration = () => {
     const [firstName, setFirstName] = useState('');

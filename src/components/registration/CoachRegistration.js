@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useHistory} from 'react-router-dom';
-import CoachService from "../services/CoachService";
+import CoachService from "../../services/CoachService";
 import Select from 'react-select'; 
 const CoachRegistration = () => {
 
@@ -10,6 +10,7 @@ const CoachRegistration = () => {
     const [password, setPassword] = useState('');
     const [levelsObjectArray, setLevelsObjectArray] = useState([]);
     const [yearsOfExperience, setYearsOfExperience] = useState(null);
+    const [ustaRating, setUSTARating] = useState(null);
     const [bio, setBio] = useState('');
     const [location, setLocation] = useState('');
     const[isPending, setIsPending] = useState(false);
@@ -26,7 +27,7 @@ const CoachRegistration = () => {
 
         e.preventDefault();
      
-        const coach = {firstName, lastName, email, password, levelsObjectArray, yearsOfExperience, bio, location};
+        const coach = {firstName, lastName, email, password, levelsObjectArray, yearsOfExperience, ustaRating, bio, location};
         setIsPending(true);
         console.log('coach => ' + JSON.stringify(coach));
         CoachService.createCoach(coach).then(res => {
@@ -62,6 +63,9 @@ const CoachRegistration = () => {
             <br></br>
             <label htmlFor="yearsOfExperience" required>Years of Experience Playing Tennis: </label>
             <input id = "yearsOfExperience" type = "number" required value = {yearsOfExperience} onChange={(e) => setYearsOfExperience(e.target.value)}/>
+            <br></br>
+            <label htmlFor="ustaRating" required>USTA NTPR Rating: </label>
+            <input id = "ustaRating" type = "number" required value = {ustaRating} onChange={(e) => setUSTARating(e.target.value)}/>
             <br></br>
             <label htmlFor="bio" required>Bio: </label>
             <input id = "bio" type = "text" required value = {bio} onChange={(e) => setBio(e.target.value)}/>

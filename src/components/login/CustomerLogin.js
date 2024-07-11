@@ -1,5 +1,5 @@
 import { useState } from "react";
-import LoginService from "../services/LoginService";
+import LoginService from "../../services/LoginService";
 import { useHistory } from "react-router-dom";
 const CustomerLogin = () => {
     const[email, setEmail] = useState('');

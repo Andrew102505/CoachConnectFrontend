@@ -1,7 +1,7 @@
 import { useState } from "react";
-import LoginService from "../services/LoginService";
+import LoginService from "../../services/LoginService";
 import { useHistory } from "react-router-dom";
-const AdminLogin = () => {
+const CoachLogin = () => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[isPending, setIsPending] = useState(false);
@@ -10,7 +10,7 @@ const AdminLogin = () => {
     function authenticateUser(){
         const token = {email, password};//could cause issues since using const 
         setIsPending(true);
-        LoginService.authenticateUser('customer', token)//this is why we made seperate login components for each user type so we could specify the role directly as a parameter
+        LoginService.authenticateUser('coach', token)//this is why we made seperate login components for each user type so we could specify the role directly as a parameter
         .then(res => {
             setIsPending(false);
             history.push('/');
@@ -18,7 +18,7 @@ const AdminLogin = () => {
     }
 
     return (
-        <div className="admin-login">
+        <div className="coach-login">
             <h2>Login</h2>
             <form onSubmit = {authenticateUser}>
             <label htmlFor="email" required>Email: </label>
@@ -33,4 +33,4 @@ const AdminLogin = () => {
     )
 }
 
-export default AdminLogin;
+export default CoachLogin;
