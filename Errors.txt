@@ -1,0 +1,3 @@
+Error - axios cors and xml handle - make sure you have added the CrossOrigin annotation at the top of the class and make sure your request map and headings are correct and the base url in the react service file matches the path in your request mappings
+
+SideNote - We don't want an admin registration page because we don't want anyone to just be able to go on the website and register an admin account - an admin account must be set manually in the db
