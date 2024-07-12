@@ -6,3 +6,9 @@ IMPORTANT
 Key Idea is that whenever you are creating a var that relies on fetched data you need to make it a state variable because initially all the values of that var will be null and if a non state var then the component will not rerender when the var is actually populated with data - state variables will cause component to rerender when their value is updated
 //we need to set coach(anything that relies on async function) to be a state var because it will initially be null but when updated it will rerender the component
 //if we set const coach = CoachServce.getCoachById(id)... then we would have all null values rendered at first and when it finally was set equal to something the component would not rerender because it is not a state var
+
+Error - Remember to use .equals with string and NOT ==
+
+Error - When you see something briefly in the console and it goes away you need to add e.preventDefault(); at the beginning of the 
+method that is called on submit and also accept the event as a parameter like const methodName = (e) =>{e.preventDefault(); ...}
+

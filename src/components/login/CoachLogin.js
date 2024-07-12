@@ -7,7 +7,8 @@ const CoachLogin = () => {
     const[isPending, setIsPending] = useState(false);
     const history = useHistory();
 
-    function authenticateUser(){
+    function authenticateUser(e){
+        e.preventDefault();
         const token = {email, password};//could cause issues since using const 
         setIsPending(true);
         LoginService.authenticateUser('coach', token)//this is why we made seperate login components for each user type so we could specify the role directly as a parameter

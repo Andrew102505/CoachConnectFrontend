@@ -5,7 +5,7 @@ const CoachList = (props) => {
     const printLevels = coach => {
         let stringLevels = '';
         coach.levels.forEach(element => {
-            stringLevels += element
+            stringLevels += element + " "
         });
         return stringLevels;
     }
