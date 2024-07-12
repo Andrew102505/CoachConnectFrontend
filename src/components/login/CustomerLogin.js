@@ -14,6 +14,9 @@ const CustomerLogin = () => {
         LoginService.authenticateUser('customer', token)//this is why we made seperate login components for each user type so we could specify the role directly as a parameter
         .then(res => {
             setIsPending(false);
+            //need to remember that the id as well as all other values in storage are stored as type string
+            sessionStorage.setItem('userId', `${res.data.id}`);
+            sessionStorage.setItem('role', `${res.data.role}`);
             history.push('/');
         });
     }

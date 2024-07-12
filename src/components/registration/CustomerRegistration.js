@@ -17,6 +17,8 @@ const CustomerRegistration = () => {
         console.log('customer => ' + JSON.stringify(customer));
         CustomerService.createCustomer(customer).then(res=>{//the .then makes is so that the asynchronous operation before must be completed before we go inside the then statement(so once the customer has been saved to db we will be redirected to the home page)
             setIsPending(false);
+            sessionStorage.setItem('userId', `${res.data.id}`);
+            sessionStorage.setItem('role', `${res.data.role}`);
             history.push('/');
         });
         //lets have the POST method return the saved customer so we can get a hold of the id and the role while leaving the role preset

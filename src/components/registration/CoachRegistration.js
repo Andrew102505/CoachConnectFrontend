@@ -32,6 +32,8 @@ const CoachRegistration = () => {
         console.log('coach => ' + JSON.stringify(coach));
         CoachService.createCoach(coach).then(res => {
             setIsPending(false);
+            sessionStorage.setItem('userId', `${res.data.id}`);
+            sessionStorage.setItem('role', `${res.data.role}`);
             history.push('/');
         });
     }

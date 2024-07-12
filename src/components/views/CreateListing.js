@@ -23,7 +23,7 @@ const CreateListing = () => {
     const history = useHistory();
 
     const getCoach = () => {
-        CoachService.getCoachById(2/**sessionStorage.getItem('userid') */).then(res => {
+        CoachService.getCoachById(sessionStorage.getItem('userId')).then(res => {
             setCoach(res.data);
             setFetchedCoach(true);
         })

@@ -14,6 +14,8 @@ const CoachLogin = () => {
         LoginService.authenticateUser('coach', token)//this is why we made seperate login components for each user type so we could specify the role directly as a parameter
         .then(res => {
             setIsPending(false);
+            sessionStorage.setItem('userId', `${res.data.id}`);
+            sessionStorage.setItem('role', `${res.data.role}`);
             history.push('/');
         });
     }
