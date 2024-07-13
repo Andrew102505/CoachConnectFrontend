@@ -2,7 +2,7 @@ import { useState } from "react";
 import {useHistory} from 'react-router-dom';
 import CustomerService from "../../services/CustomerService";//../moves us out of the current directory this file is in
 
-const CustomerRegistration = () => {
+const CustomerRegistration = (props) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -19,6 +19,7 @@ const CustomerRegistration = () => {
             setIsPending(false);
             sessionStorage.setItem('userId', `${res.data.id}`);
             sessionStorage.setItem('role', `${res.data.role}`);
+            props.initializeUser();
             history.push('/');
         });
         //lets have the POST method return the saved customer so we can get a hold of the id and the role while leaving the role preset
