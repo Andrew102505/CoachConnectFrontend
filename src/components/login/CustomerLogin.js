@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LoginService from "../../services/LoginService";
 import { useHistory } from "react-router-dom";
-const CustomerLogin = () => {
+const CustomerLogin = (props) => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[isPending, setIsPending] = useState(false);
@@ -17,6 +17,7 @@ const CustomerLogin = () => {
             //need to remember that the id as well as all other values in storage are stored as type string
             sessionStorage.setItem('userId', `${res.data.id}`);
             sessionStorage.setItem('role', `${res.data.role}`);
+            props.initializeUser();
             history.push('/');
         });
     }

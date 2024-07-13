@@ -2,7 +2,7 @@ import { useState } from "react";
 import {useHistory} from 'react-router-dom';
 import CoachService from "../../services/CoachService";
 import Select from 'react-select'; 
-const CoachRegistration = () => {
+const CoachRegistration = (props) => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -34,6 +34,7 @@ const CoachRegistration = () => {
             setIsPending(false);
             sessionStorage.setItem('userId', `${res.data.id}`);
             sessionStorage.setItem('role', `${res.data.role}`);
+            props.initializeUser();
             history.push('/');
         });
     }
