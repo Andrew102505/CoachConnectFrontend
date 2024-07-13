@@ -1,11 +1,12 @@
 //very similar to the SessionList component but just adds extra information for each sesion
 import { useState } from "react";
 import SessionService from "../../services/SessionService";
+import ParticipantsList from "./ParticipantsList";
 const CoachSessionList = (props) => {
 
     const listingId = props.listing.id;
     const[fetched, setFetched] = useState(false);
-    const[session, setSessions] = useState(null);
+    const[sessions, setSessions] = useState(null);
     const[viewParticipants, setViewParticipants] = useState(false);
     function getSessions(listingId){
         SessionService.getListingsSessions(listingId).then(res => {
@@ -33,7 +34,7 @@ const CoachSessionList = (props) => {
                 <p>Status: {session?.numParticipants}/{session.capacity} enrolled</p>
                 {/**have button that says view participants */}
                 {viewParticipants===false && <button onClick={toggleViewParticipants}>View Players</button>}
-                {viewParticipants && <button onClick={toggleViewParticipants}>Close</button> && <PartcipantsList session = {session}/>}
+                {viewParticipants && <button onClick={toggleViewParticipants}>Close</button> && <ParticipantsList session = {session}/>}
             </div>
             ))}
         </div>

@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import {useLocation} from 'react-router-dom';
+import CoachSessionList from './CoachSessionList';
 const CoachListingDetails = () => {
     const location = useLocation();
     const listing = location.state.listing;
-
+   
     return (
         <div>
             <h2>{listing.title}</h2>

@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
-
-const CoachListingsList = () => {
+import { useState } from "react";
+const CoachListingsList = (props) => {
 
     const listings = props.listings;
     const history = useHistory();
