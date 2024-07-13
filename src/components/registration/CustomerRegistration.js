@@ -20,6 +20,7 @@ const CustomerRegistration = (props) => {
             sessionStorage.setItem('userId', `${res.data.id}`);
             sessionStorage.setItem('role', `${res.data.role}`);
             props.initializeUser();
+            props.Clear();
             history.push('/');
         });
         //lets have the POST method return the saved customer so we can get a hold of the id and the role while leaving the role preset

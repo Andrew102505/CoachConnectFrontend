@@ -18,6 +18,7 @@ const ListingDetails = (props) => {
     */
     function getSessions(listingId){
         SessionService.getListingsSessions(listingId).then(res => {
+            console.log("sessions-------------------");
             console.log(res.data);
             setSessions(res.data);
             setFetched(true);
@@ -26,7 +27,7 @@ const ListingDetails = (props) => {
             console.log(err);
           });
     }
-    if(fetched==false){
+    if(fetched===false){
         getSessions(listing.id);
     }
     return (

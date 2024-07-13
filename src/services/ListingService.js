@@ -10,8 +10,11 @@ class ListingService {
         return axios.get(LISTING_API_BASE_URL + '/');
     }
     getListingById(listingId){
-        console.log(LISTING_API_BASE_URL + '/' + listingId);
+        //console.log(LISTING_API_BASE_URL + '/' + listingId);
         return axios.get(LISTING_API_BASE_URL + '/' + listingId);
+    }
+    getAllCoachListings(coachId){
+        return axios.get()
     }
     
 }

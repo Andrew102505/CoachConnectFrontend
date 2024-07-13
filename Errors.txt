@@ -12,3 +12,4 @@ Error - Remember to use .equals with string and NOT ==
 Error - When you see something briefly in the console and it goes away you need to add e.preventDefault(); at the beginning of the 
 method that is called on submit and also accept the event as a parameter like const methodName = (e) =>{e.preventDefault(); ...}
 
+YOU MUST HAVE GET METHODS FOR ALL YOUR ATTRIBUTES IF YOU WANT THEM RETURNED WHEN YOU QUERY THE DB

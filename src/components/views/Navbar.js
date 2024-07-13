@@ -40,6 +40,8 @@ const Navbar = (props) => {
                 <Link to = "/coaches">Coaches</Link>
                 {props?.user?.role === 'COACH'/*sessionStorage.getItem('role')==='COACH'*/ && <Link to = "/createlisting">Create Listing</Link>}
                 <Link to = "/loginselection">Login</Link>
+                <Link to = "/shoppingcart">Cart</Link>
+                <Link to = "/coachlistings">My Listings</Link>
             </div>
         </nav>
     )

@@ -18,6 +18,7 @@ const CustomerLogin = (props) => {
             sessionStorage.setItem('userId', `${res.data.id}`);
             sessionStorage.setItem('role', `${res.data.role}`);
             props.initializeUser();
+            props.Clear();
             history.push('/');
         });
     }

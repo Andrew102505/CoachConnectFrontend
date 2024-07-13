@@ -1,17 +1,21 @@
+import { useHistory } from "react-router-dom";
 import ListingService from "../../services/ListingService";
 
 //this is where we will list all of the items in the cart
 const ShoppingCart = (props) => {
 //create a function to delete a session from the cart
-    
+const history = useHistory();
 function getListing(listingId){
-    console.log(listingId);
+    //console.log(listingId);
     ListingService.getListingById(listingId).then(res=>{
-        console.log(res.data);
+        //console.log(res.data);
         return res.data;
     }).catch(err=>{
         console.log(err);
       });
+}
+function checkout(){
+    history.push('/checkout');
 }
 return (
         <div className="shopping-cart-items">
@@ -22,6 +26,7 @@ return (
                     <p>{session?.time}</p>
                 </div>
             ))}
+            <button onClick = {checkout}>Checkout</button>
         </div>
     )
 }

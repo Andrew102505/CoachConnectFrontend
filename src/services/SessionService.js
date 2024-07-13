@@ -14,6 +14,15 @@ class SessionService {
     getListingsSessions(listingId){
         return axios.get(SESSION_API_BASE_URL + '/listingsessions/' + listingId);
     }
+
+    addParticipantToSession(sessionId, customer){
+        console.log("????????????");
+        console.log(sessionId);
+        return axios.put(SESSION_API_BASE_URL + '/addparticipant/' + sessionId, customer);
+    }
+    getSessionParticipants(sessionId){
+        return axios.get(SESSION_API_BASE_URL + '/getsessionparticipants/' + sessionId);
+    }
 }
 
 export default new SessionService();

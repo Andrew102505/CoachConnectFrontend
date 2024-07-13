@@ -22,16 +22,17 @@ import Navbar from './components/views/Navbar';
 import CustomerService from './services/CustomerService';
 import CoachService from './services/CoachService';
 import AdminService from './services/AdminService';
+import CoachListings from './components/views/CoachListings';
+import CoachListingDetails from './components/views/CoachListingDetails';
 import ShoppingCart from './components/views/ShoppingCart';
-
+import Checkout from './components/views/Checkout';
 function App() {
-  console.log(localStorage.getItem('cart')===null);
+  
   const[user, setUser] = useState(null);
   const[fetched, setFetched] = useState(false);
   const localStorageCart = JSON.parse(localStorage.getItem('cart') || '[]');
   const[cart, setCart] = useState(localStorageCart);
-  console.log("-------------------");
-  console.log(cart);
+
   function initializeUser(){
     if(sessionStorage.getItem('role')==='CUSTOMER'){
       CustomerService.getCustomerById(sessionStorage.getItem('userId')).then(res =>{
@@ -54,27 +55,33 @@ function App() {
     initializeUser();
   }
   const addSessionToCart = session => {
-    console.log(session.id);
+    
     setCart([...cart, session]);
     
   }
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart])
+  }, [cart]);
+
+  function Clear(){
+    localStorage.removeItem('cart');
+    setCart([]);
+  }
   return (
     <Router>
     <div className="App">
       <Navbar user = {user}/>
+      <button onClick = {Clear}>Clear</button>
     <div className="content">
         <Switch>
           <Route exact path = "/">
             <Home/>
           </Route>
           <Route exact path = "/registercustomer">
-            <CustomerRegistration initializeUser = {initializeUser}/>
+            <CustomerRegistration initializeUser = {initializeUser} Clear = {Clear}/>
           </Route>
           <Route exact path = "/registercoach">
-            <CoachRegistration initializeUser = {initializeUser}/>
+            <CoachRegistration initializeUser = {initializeUser} Clear = {Clear}/>
           </Route>
           <Route exact path = "/coaches"> 
             <Coaches/>
@@ -83,13 +90,13 @@ function App() {
             <LoginSelection/>
           </Route>
           <Route exact path = "/customerlogin">
-            <CustomerLogin initializeUser = {initializeUser}/>
+            <CustomerLogin initializeUser = {initializeUser} Clear = {Clear}/>
           </Route>
           <Route exact path = "/coachlogin">
-            <CoachLogin initializeUser = {initializeUser}/>
+            <CoachLogin initializeUser = {initializeUser} Clear = {Clear}/>
           </Route>
           <Route exact path = "/adminlogin">
-            <AdminLogin initializeUser = {initializeUser}/>
+            <AdminLogin initializeUser = {initializeUser} Clear = {Clear}/>
           </Route>
           <Route exact path = "/coachdetails/:id">
             <CoachDetails/>
@@ -112,8 +119,17 @@ function App() {
           <Route exact path = "/sessionverification">
             <SessionVerification/>
           </Route>
+          <Route exact path = "/coachlistings">
+            <CoachListings user = {user}/>
+          </Route>
+          <Route exact path = "/coachlistingdetails">
+            <CoachListingDetails/>
+          </Route>
           <Route exact path = "/shoppingcart">
             <ShoppingCart cart = {cart}/>
+          </Route>
+          <Route exact path = "/checkout">
+            <Checkout cart = {cart} user = {user}/>
           </Route>
         </Switch>
     </div>
