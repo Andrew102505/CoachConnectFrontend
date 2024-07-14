@@ -14,7 +14,7 @@ class ListingService {
         return axios.get(LISTING_API_BASE_URL + '/' + listingId);
     }
     getAllCoachListings(coachId){
-        return axios.get()
+        return axios.get(LISTING_API_BASE_URL + '/coachlistings/' + coachId);
     }
     
 }
