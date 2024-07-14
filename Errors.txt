@@ -13,3 +13,8 @@ Error - When you see something briefly in the console and it goes away you need 
 method that is called on submit and also accept the event as a parameter like const methodName = (e) =>{e.preventDefault(); ...}
 
 YOU MUST HAVE GET METHODS FOR ALL YOUR ATTRIBUTES IF YOU WANT THEM RETURNED WHEN YOU QUERY THE DB
+
+GitHub
+We don't want to do git pull origin master on a branch unless we've merged the changes because that will replace all the changes we've made on the current branch with the code in main branch in the github repository. This also includes when working on the master branch itself because git pull origin master will pull replace the code you've written on master branch in your local with the code on master in the remote github repository
+Basically don't do git pull origin master/main unless you want to use the current code in github repo and replace all the changes you've made on your local machine(the right time to do this is just after you've merged your changes in local to master and then pull the master code down to your local branch)
+ALSO YOU MUST be on the branch that you want changes on from the start that you begin writing code because it will track changes as you go

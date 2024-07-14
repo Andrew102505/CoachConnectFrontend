@@ -41,10 +41,11 @@ const Navbar = (props) => {
                 {props?.user?.role === 'COACH'/*sessionStorage.getItem('role')==='COACH'*/ && <Link to = "/createlisting">Create Listing</Link>}
                 <Link to = "/loginselection">Login</Link>
                 <Link to = "/shoppingcart">Cart</Link>
-                <Link to = "/coachlistings">My Listings</Link>
+                {sessionStorage.getItem('role')==='COACH' && <Link to = "/coachlistings">My Listings</Link>}
             </div>
         </nav>
     )
 }
 
 export default Navbar;
+
