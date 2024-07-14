@@ -26,8 +26,11 @@ import CoachListings from './components/views/CoachListings';
 import CoachListingDetails from './components/views/CoachListingDetails';
 import ShoppingCart from './components/views/ShoppingCart';
 import Checkout from './components/views/Checkout';
+import CoachesOnly from './components/views/CoachesOnly';
 function App() {
-  
+  /**the issue is that the user is set to null everytime we render App.js and App.js is rerendered whenever we go to another page through the url bar
+   * 
+   */
   const[user, setUser] = useState(null);
   const[fetched, setFetched] = useState(false);
   const localStorageCart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -130,6 +133,9 @@ function App() {
           </Route>
           <Route exact path = "/checkout">
             <Checkout cart = {cart} user = {user}/>
+          </Route>
+          <Route exact path = "/coachesonly">
+            <CoachesOnly/>
           </Route>
         </Switch>
     </div>

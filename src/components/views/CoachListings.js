@@ -1,12 +1,16 @@
 //will contain all of a coaches listings that they own
 import { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import CoachListingsList from "./CoachListingsList";
 import ListingService from "../../services/ListingService";
 const CoachListings = (props) => {
     const[fetched, setFetched] = useState(false);
     const[pending, setPending] = useState(true);
     const[listings, setListings] = useState(null);
-console.log(props.user.id);
+    const history = useHistory();
+    if(sessionStorage.getItem('role')!=='COACH'){
+        history.push('/coachesonly');
+    }
     function getCoachListings(coachId){
         ListingService.getAllCoachListings(coachId).then(res=>{
             setListings(res.data);
@@ -14,8 +18,8 @@ console.log(props.user.id);
             setPending(false);
         })
     }
-
-    if(fetched == false){
+//this works because when the user is initialized in the App.js component, then this component will also be rerendered and user will not be null, it also prevents us from moving forward with null values and getting errors
+    if(props.user !== null && fetched == false){
         getCoachListings(props.user.id);
     }
 
