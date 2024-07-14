@@ -28,13 +28,14 @@ const CoachSessionList = (props) => {
     return(
         <div className = "session-list">
             {sessions?.map((session) => (
-            <div className="session-info">
+            <div className="session-info" key = {session.id}>
                 <p>Date: {session?.date}</p>
                 <p>Time: {session?.time}</p>
                 <p>Status: {session?.numParticipants}/{session.capacity} enrolled</p>
                 {/**have button that says view participants */}
                 {viewParticipants===false && <button onClick={toggleViewParticipants}>View Players</button>}
-                {viewParticipants && <button onClick={toggleViewParticipants}>Close</button> && <ParticipantsList session = {session}/>}
+                {viewParticipants && <button onClick={toggleViewParticipants}>Close</button>}
+                {viewParticipants && <ParticipantsList session = {session}/>}
             </div>
             ))}
         </div>
