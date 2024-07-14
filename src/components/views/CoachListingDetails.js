@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import {useLocation} from 'react-router-dom';
+import {useLocation, useHistory} from 'react-router-dom';
 import CoachSessionList from './CoachSessionList';
+
 const CoachListingDetails = () => {
     const location = useLocation();
     const listing = location.state.listing;
-   
+    const history = useHistory();
+    function createSession(){
+        history.push({pathname: '/createsession', state:{listing:listing}});
+    }
     return (
         <div>
             <h2>{listing.title}</h2>
@@ -16,6 +20,7 @@ const CoachListingDetails = () => {
             <h3>Sessions for this Listings: </h3>
             {/**displays all the sessions associated with this listing */}
             <CoachSessionList listing = {listing}/>
+            <button onClick = {createSession}>Add Session</button>
         </div>
     )
 
