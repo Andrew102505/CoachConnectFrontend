@@ -26,7 +26,9 @@ import CoachListings from './components/views/CoachListings';
 import CoachListingDetails from './components/views/CoachListingDetails';
 import ShoppingCart from './components/views/ShoppingCart';
 import Checkout from './components/views/Checkout';
+import OrderConfirmation from './components/views/OrderConfirmation';
 import CoachesOnly from './components/views/CoachesOnly';
+import RegistrationSelection from './components/views/RegistrationSelection';
 function App() {
   /**the issue is that the user is set to null everytime we render App.js and App.js is rerendered whenever we go to another page through the url bar
    * 
@@ -35,7 +37,6 @@ function App() {
   const[fetched, setFetched] = useState(false);
   const localStorageCart = JSON.parse(localStorage.getItem('cart') || '[]');
   const[cart, setCart] = useState(localStorageCart);
-
   function initializeUser(){
     if(sessionStorage.getItem('role')==='CUSTOMER'){
       CustomerService.getCustomerById(sessionStorage.getItem('userId')).then(res =>{
@@ -80,6 +81,9 @@ function App() {
           <Route exact path = "/">
             <Home/>
           </Route>
+          <Route exact path = "/registrationselection">
+            <RegistrationSelection/>
+          </Route>
           <Route exact path = "/registercustomer">
             <CustomerRegistration initializeUser = {initializeUser} Clear = {Clear}/>
           </Route>
@@ -114,7 +118,7 @@ function App() {
             <Listings/>
           </Route>
           <Route exact path = "/listingdetails"> 
-            <ListingDetails addSessionToCart = {addSessionToCart}/>
+            <ListingDetails addSessionToCart = {addSessionToCart} user = {user}/>
           </Route>
           <Route exact path = "/listingverification">
             <ListingVerification/>
@@ -132,7 +136,10 @@ function App() {
             <ShoppingCart cart = {cart}/>
           </Route>
           <Route exact path = "/checkout">
-            <Checkout cart = {cart} user = {user}/>
+            <Checkout cart = {cart} user = {user} Clear = {Clear}/>
+          </Route>
+          <Route exact path = "/orderconfirmation">
+            <OrderConfirmation/>
           </Route>
           <Route exact path = "/coachesonly">
             <CoachesOnly/>

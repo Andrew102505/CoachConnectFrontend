@@ -31,8 +31,8 @@ const CoachLogin = (props) => {
                 <br></br>
                 <label htmlFor="password" required>Password: </label>
                 <input id = "password" type = "text" required value = {password} onChange={(e) => setPassword(e.target.value)}/>
-                {!isPending && <button >Create</button>}
-                {isPending && <button>Creating Account</button>}
+                {!isPending && <button >Sign in</button>}
+                {isPending && <button>Signing in</button>}
             </form>
         </div>
     )

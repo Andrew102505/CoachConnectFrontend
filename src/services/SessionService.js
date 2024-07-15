@@ -23,6 +23,9 @@ class SessionService {
     getSessionParticipants(sessionId){
         return axios.get(SESSION_API_BASE_URL + '/getsessionparticipants/' + sessionId);
     }
+    containsParticipant(sessionId, customerId){
+        return axios.post(SESSION_API_BASE_URL + '/containsparticipant/' + sessionId + '/' + customerId);
+    }
 }
 
 export default new SessionService();
