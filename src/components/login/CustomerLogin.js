@@ -5,6 +5,7 @@ const CustomerLogin = (props) => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[isPending, setIsPending] = useState(false);
+    const[invalid, setInvalid] = useState(false);
     const history = useHistory();
 
     function authenticateUser(e){
@@ -15,13 +16,20 @@ const CustomerLogin = (props) => {
         .then(res => {
             setIsPending(false);
             //need to remember that the id as well as all other values in storage are stored as type string
+            
             sessionStorage.setItem('userId', `${res.data.id}`);
             sessionStorage.setItem('role', `${res.data.role}`);
             props.initializeUser();
             props.Clear();
             history.push('/');
-        });
-    }
+            }).catch(err=>{
+                setInvalid(true);
+              });
+                
+            }
+            
+       
+    
 
     return (
         <div className="customer-login">
@@ -32,6 +40,7 @@ const CustomerLogin = (props) => {
                 <br></br>
                 <label htmlFor="password" required>Password: </label>
                 <input id = "password" type = "text" required value = {password} onChange={(e) => setPassword(e.target.value)}/>
+                {invalid && <p>Invalid username and password</p>}
                 {!isPending && <button >Sign in</button>}
                 {isPending && <button>Signing in</button>}
             </form>
