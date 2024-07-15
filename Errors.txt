@@ -19,5 +19,7 @@ We don't want to do git pull origin master on a branch unless we've merged the c
 Basically don't do git pull origin master/main unless you want to use the current code in github repo and replace all the changes you've made on your local machine(the right time to do this is just after you've merged your changes in local to master and then pull the master code down to your local branch)
 ALSO YOU MUST be on the branch that you want changes on from the start that you begin writing code because it will track changes as you go
 When you create a new branch a copy of the code from master/main in your remote github repository is copied onto the branch
+IMPORTANT - if on a feature branch or master do not do git pull orgin master until you have merged those changes on the feature branch/local master branch to master branch in remote github repository because otherwise when you run git pull origin master, the code from master in the remote github repository will be pulled down onto your feature branch/local master branch, undoing all of the changes you've made on the feature branch/local master branch
+
 
 IMPORTANT when you try to implement the paywall and message portal just go onto a new branch because if you mess something up it won't affect the code in remote github repo unless you merge it --> we've been doing this for everything anyways
