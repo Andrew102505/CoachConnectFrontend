@@ -17,6 +17,12 @@ function getListing(listingId){
 function checkout(){
     history.push('/checkout');
 }
+function removeSession(sessionId){
+    let cart =  JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter((x)=> x.id !== sessionId);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    window.location.reload();
+}
 return (
         <div className="shopping-cart-items">
             {props.cart?.map((session)=>(
@@ -24,6 +30,7 @@ return (
                     <p>{getListing(session.listingId)?.title}</p>
                     <p>{session?.date}</p>
                     <p>{session?.time}</p>
+                    <button onClick = {() => removeSession(session.id)}>Remove from Cart</button>
                 </div>
             ))}
             <button onClick = {checkout}>Checkout</button>

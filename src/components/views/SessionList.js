@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SessionService from "../../services/SessionService";
+import CustomerService from "../../services/CustomerService";
 
 const SessionList = (props) => {
     
@@ -7,7 +8,16 @@ const SessionList = (props) => {
     const[fetched, setFetched] = useState(false);
     const sessions = props.sessions;
     
-   
+   function addToCart(customerId, sessionDate, session){
+    SessionService.containsParticipant(session?.id, customerId).then(res => {
+        if(res.data === true){
+            props.updateErrorDate(sessionDate);
+        }else{
+            props.addSessionToCart(session);
+        }
+    })
+    
+   }
 
     return(
         <div className = "session-list">
@@ -16,7 +26,8 @@ const SessionList = (props) => {
                 <p>Date: {session?.date}</p>
                 <p>Time: {session?.time}</p>
                 <p>Status: {session?.numParticipants}/{session.capacity} enrolled</p>
-                <button onClick = {() => props.addSessionToCart(session)} >Add to Cart</button>
+                {session?.numParticipants!==session?.capacity && <button onClick = {() => addToCart(props.user?.id, session?.date, session)}>Add to Cart</button>}
+                {session?.numParticipants===session?.capacity && <p>Session Full</p>}
             </div>
             ))}
         </div>
