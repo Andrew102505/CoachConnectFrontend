@@ -5,7 +5,7 @@ import SessionService from "../../services/SessionService";
 const ListingDetails = (props) => {
     const location = useLocation();
     const listing = location.state.listing;
-    console.log(listing);
+    //console.log(listing);
     /*
     const{id} = useParams
     const history = useHistory();
@@ -19,8 +19,8 @@ const ListingDetails = (props) => {
     */
     function getSessions(listingId){
         SessionService.getListingsSessions(listingId).then(res => {
-            console.log("sessions-------------------");
-            console.log(res.data);
+            //console.log("sessions-------------------");
+            //console.log(res.data);
             setSessions(res.data);
             setFetched(true);
 
@@ -44,7 +44,7 @@ const ListingDetails = (props) => {
             <p>Location: {listing.location}</p>
             <h3>Available Sessions</h3>
             {errorDate!=='' && <p>Cannot add to cart - Already enrolled in Session: {errorDate}</p>}
-            <SessionList listingId = {listing.id} sessions = {sessions} addSessionToCart = {props.addSessionToCart} updateErrorDate = {updateErrorDate} user = {props?.user}/>
+            <SessionList listingId = {listing.id} sessions = {sessions} addSessionToCart = {props.addSessionToCart} updateErrorDate = {updateErrorDate} user = {props?.user} cart = {props?.cart}/>
             {/**display all the sessions by going threw db and finding all sessions with listing id of listing.id
              * display all of those sessions using the .map function c, basically inject component like you did with Listings
              * and in the session list component for each component add a button that says purchase that will say add to cart
