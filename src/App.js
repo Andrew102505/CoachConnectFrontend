@@ -118,7 +118,7 @@ function App() {
             <Listings/>
           </Route>
           <Route exact path = "/listingdetails"> 
-            <ListingDetails addSessionToCart = {addSessionToCart} user = {user}/>
+            <ListingDetails addSessionToCart = {addSessionToCart} user = {user} cart = {cart}/>
           </Route>
           <Route exact path = "/listingverification">
             <ListingVerification/>
