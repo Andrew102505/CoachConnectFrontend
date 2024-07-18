@@ -11,13 +11,14 @@ const SessionList = (props) => {
     const[isDuplicate, setIsDuplicate] = useState('');
     const sessions = props.sessions;
     
-   function addToCart(customerId, sessionDate, session){
+   function addToCart(customerId, session){
     if(sessionStorage.getItem('role') === 'CUSTOMER'){
     SessionService.containsParticipant(session?.id, customerId).then(res => {
         if(res.data === true){//true that the participant is already enrolled in the session
             setAddedSession('');
             setIsDuplicate('');
-            props.updateErrorDate(sessionDate);
+            let message =  `${session?.name} || ${session?.date}`;
+            props.updateErrorMessage(message);
         }else{
             let duplicate = props.cart.filter(x=>x.id === session.id);
             console.log(duplicate);
@@ -49,10 +50,10 @@ const SessionList = (props) => {
             {isDuplicate !== '' && <p>Session - {addedSession} is already in cart.</p>}
             {sessions?.map((session) => (
             <div className="session-info" key = {session?.id}>
-                <p>Date: {session?.date}</p>
+                <p>{session?.name} || {session?.date}</p>
                 <p>Time: {session?.time}</p>
                 <p>Status: {session?.numParticipants}/{session.capacity} enrolled</p>
-                {session?.numParticipants!==session?.capacity && <button onClick = {() => addToCart(props.user?.id, session?.date, session)}>Add to Cart</button>}
+                {session?.numParticipants!==session?.capacity && <button onClick = {() => addToCart(props.user?.id, session)}>Add to Cart</button>}
                 {session?.numParticipants===session?.capacity && <p>Session Full</p>}
             </div>
             ))}

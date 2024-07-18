@@ -36,8 +36,9 @@ const CustomerAccountInfo = (props) => {
         <div>
              {participantSessions?.map((session)=>(
             <div className = "participant-sessions" key = {session?.id}>
-                <p>Session: {session?.date}</p>
-
+                <p>{session?.title}</p>
+                <p>Session: {session?.name} || {session?.date}</p>
+                <p>Time: {session?.time}</p>
             </div>
         ))}
         </div>

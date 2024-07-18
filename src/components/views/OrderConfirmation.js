@@ -10,8 +10,9 @@ const OrderConfirmation = () => {
         <div className = "sessions">
         {sessions?.map((session)=>(
                 <div className="session-info" key = {session.id}>
-                    <p>{session?.date}</p>
-                    <p>{session?.time}</p>
+                    <p>{session?.title}</p>
+                    <p>{session?.name} || {session?.date}</p>
+                    <p>Time: {session?.time}</p>
                 </div>
             ))}
         </div>

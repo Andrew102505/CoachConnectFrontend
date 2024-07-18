@@ -30,9 +30,9 @@ return (
         <div className="shopping-cart-items">
             {props.cart?.map((session)=>(
                 <div className="session-info" key = {session.id}>
-                    <p>{getListing(session.listingId)?.title}</p>
-                    <p>{session?.date}</p>
-                    <p>{session?.time}</p>
+                    <p>{session?.title}</p>
+                    <p>{session?.name} || {session?.date}</p>
+                    <p>Time: {session?.time}</p>
                     <button onClick = {() => removeSession(session.id)}>Remove from Cart</button>
                 </div>
             ))}
