@@ -5,6 +5,9 @@ import ListingService from "../../services/ListingService";
 const ShoppingCart = (props) => {
 //create a function to delete a session from the cart
 const history = useHistory();
+if(sessionStorage.getItem('role') !== 'CUSTOMER'){
+    history.push('/privateaccess');
+}
 function getListing(listingId){
     //console.log(listingId);
     ListingService.getListingById(listingId).then(res=>{

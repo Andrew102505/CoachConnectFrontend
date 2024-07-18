@@ -23,3 +23,7 @@ IMPORTANT - if on a feature branch or master do not do git pull orgin master unt
 
 
 IMPORTANT when you try to implement the paywall and message portal just go onto a new branch because if you mess something up it won't affect the code in remote github repo unless you merge it --> we've been doing this for everything anyways
+
+Uncaught error in promise - add a .catch statement after the .then
+
+Error setting an useState array to res.data(which is an array), after you do setArray(???) and then console.log(array), it will be null --> but it will still work if you pass it as a prop to another component to then list the information out and make sure that in your .map you use element => () and NOT element => {} (Sidenote: In the CustomerAccountInfo component I was able to list out the sessions without creating a separate component to do so)
