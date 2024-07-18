@@ -1,7 +1,4 @@
-import CoachService from "../../services/CoachService";
-import CustomerService from "../../services/CustomerService";
 import {Link} from 'react-router-dom';
-import { useState } from "react";
 const Navbar = (props) => {
     /*
     const[role, setRole] = useState(sessionStorage.getItem('role'));
@@ -40,8 +37,11 @@ const Navbar = (props) => {
                 <Link to = "/coaches">Coaches</Link>
                 {props?.user?.role === 'COACH'/*sessionStorage.getItem('role')==='COACH'*/ && <Link to = "/createlisting">Create Listing</Link>}
                 <Link to = "/loginselection">Login</Link>
-                <Link to = "/shoppingcart">Cart</Link>
-                {sessionStorage.getItem('role')==='COACH' && <Link to = "/coachlistings">My Listings</Link>}
+                {sessionStorage.getItem('role') === 'CUSTOMER' && <Link to = "/shoppingcart">Cart</Link>}
+                {sessionStorage.getItem('role') === 'COACH' && <Link to = "/coachlistings">My Listings</Link>}
+                {sessionStorage.getItem('role') === 'CUSTOMER' && <Link to = "/customeraccountinfo">Account Info</Link>}
+                {sessionStorage.getItem('role') === 'COACH' && <Link to = "/coachaccountinfo">Account Info</Link>}
+                {sessionStorage.getItem('role') === 'ADMIN' && <Link to = "/adminaccountinfo">Account Info</Link>}
             </div>
         </nav>
     )

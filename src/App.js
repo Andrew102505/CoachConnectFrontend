@@ -29,6 +29,10 @@ import Checkout from './components/views/Checkout';
 import OrderConfirmation from './components/views/OrderConfirmation';
 import CoachesOnly from './components/views/CoachesOnly';
 import RegistrationSelection from './components/views/RegistrationSelection';
+import CustomerAccountInfo from './components/views/CustomerAccountInfo';
+import CoachAccountInfo from './components/views/CoachAccountInfo';
+import AdminAccountInfo from './components/views/AdminAccountInfo';
+import PrivateAccess from './components/views/PrivateAccess';
 function App() {
   /**the issue is that the user is set to null everytime we render App.js and App.js is rerendered whenever we go to another page through the url bar
    * 
@@ -143,6 +147,18 @@ function App() {
           </Route>
           <Route exact path = "/coachesonly">
             <CoachesOnly/>
+          </Route>
+          <Route exact path = "/customeraccountinfo">
+            <CustomerAccountInfo user = {user}/>
+          </Route>
+          <Route exact path = "/coachaccountinfo">
+            <CoachAccountInfo user = {user}/>
+          </Route>
+          <Route exact path = "/adminaccountinfo">
+            <AdminAccountInfo user = {user}/>
+          </Route>
+          <Route exact path = '/privateaccess'>
+            <PrivateAccess/>
           </Route>
         </Switch>
     </div>

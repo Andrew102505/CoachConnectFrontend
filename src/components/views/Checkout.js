@@ -34,7 +34,7 @@ const Checkout = (props) => {
             ))}
             </div>
             <h2>Paywall Here</h2>
-            <button onClick = {purchase}>Purchase</button>
+            {sessions.length>0 && <button onClick = {purchase}>Purchase</button>}
         </div>
 
     )
