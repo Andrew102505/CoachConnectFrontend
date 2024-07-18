@@ -3,6 +3,7 @@ import {useState} from 'react';
 import CoachService from '../../services/CoachService';
 import SessionService from '../../services/SessionService';
 const CreateSession = () => {
+    const[name, setName] = useState('');
     const[startTime, setStartTime] = useState('00:00 am/pm');
     const[endTime, setEndTime] = useState('00:00 am/pm');
     const[time, setTime] = useState(null);
@@ -12,12 +13,12 @@ const CreateSession = () => {
     const location = useLocation();
     const[listingId, setListingId] = useState(location.state?.listing.id);
     const history = useHistory();
-    
+    const[title, setTitle] = useState(location.state?.listing.title);
     function saveSession(e){//when this method is called we already have all of our vars to create a session object
         e.preventDefault();
         let concatTime = `${startTime} - ${endTime}`;
         setTime(concatTime);
-        let newSession = {time, date, listingId, capacity};
+        let newSession = {time, date, listingId, capacity, name, title};
         setSession(newSession);
         //now call the session service to store this session to the db
         SessionService.createSession(newSession).then(res => {
@@ -32,6 +33,9 @@ const CreateSession = () => {
         <div>
             <h2>Create a Session</h2>
             <form onSubmit={saveSession}>
+                <label htmlFor="name">Name: </label>
+                <input id = "name" type="text" required value = {name} onChange={(e) => setName(e.target.value)}/>
+                <br></br>
                 <label htmlFor="startTime">Start Time: </label>
                 <input id = "startTime" type="text" required value = {startTime} onChange={(e) => setStartTime(e.target.value)}/>
                 <br></br>

@@ -12,7 +12,7 @@ const ListingDetails = (props) => {
     */
     const[sessions, setSessions] = useState(null);
     const[fetched, setFetched] = useState(false);
-    const[errorDate, setErrorDate] = useState('');
+    const[errorMessage, setErrorMessage] = useState('');
     /*
     const{id} = useParams
     const history = useHistory();
@@ -31,8 +31,8 @@ const ListingDetails = (props) => {
     if(fetched===false){
         getSessions(listing.id);
     }
-    function updateErrorDate(date){
-        setErrorDate(date);
+    function updateErrorMessage(message){
+        setErrorMessage(message);
     }
     return (
         <div>
@@ -43,8 +43,8 @@ const ListingDetails = (props) => {
             <p>Price: {listing.price}</p>
             <p>Location: {listing.location}</p>
             <h3>Available Sessions</h3>
-            {errorDate!=='' && <p>Cannot add to cart - Already enrolled in Session: {errorDate}</p>}
-            <SessionList listingId = {listing.id} sessions = {sessions} addSessionToCart = {props.addSessionToCart} updateErrorDate = {updateErrorDate} user = {props?.user} cart = {props?.cart}/>
+            {errorMessage!=='' && <p>Cannot add to cart - Already enrolled in Session: {errorMessage}</p>}
+            <SessionList listingId = {listing.id} sessions = {sessions} addSessionToCart = {props.addSessionToCart} updateErrorMessage = {updateErrorMessage} user = {props?.user} cart = {props?.cart}/>
             {/**display all the sessions by going threw db and finding all sessions with listing id of listing.id
              * display all of those sessions using the .map function c, basically inject component like you did with Listings
              * and in the session list component for each component add a button that says purchase that will say add to cart
