@@ -41,6 +41,7 @@ function App() {
   const[fetched, setFetched] = useState(false);
   const localStorageCart = JSON.parse(localStorage.getItem('cart') || '[]');
   const[cart, setCart] = useState(localStorageCart);
+ 
   function initializeUser(){
     if(sessionStorage.getItem('role')==='CUSTOMER'){
       CustomerService.getCustomerById(sessionStorage.getItem('userId')).then(res =>{
@@ -75,10 +76,11 @@ function App() {
     localStorage.removeItem('cart');
     setCart([]);
   }
+  
   return (
     <Router>
     <div className="App">
-      <Navbar user = {user}/>
+      <Navbar user = {user} Clear = {Clear}/>
       <button onClick = {Clear}>Clear</button>
     <div className="content">
         <Switch>

@@ -1,5 +1,8 @@
-import {Link} from 'react-router-dom';
+import { useState } from 'react';
+import {Link, useHistory} from 'react-router-dom';
 const Navbar = (props) => {
+
+    const history = useHistory();
     /*
     const[role, setRole] = useState(sessionStorage.getItem('role'));
     const[fetched, setFetched] = useState(false);
@@ -27,6 +30,14 @@ const Navbar = (props) => {
         getUser();
     }
     */
+  
+   function logout(){
+    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('role');
+    props.Clear();
+    history.push('/');
+    window.location.reload();
+   }
     return(
         <nav className="navbar">
             <h1>CoachConnect</h1>
@@ -42,6 +53,7 @@ const Navbar = (props) => {
                 {sessionStorage.getItem('role') === 'CUSTOMER' && <Link to = "/customeraccountinfo">Account Info</Link>}
                 {sessionStorage.getItem('role') === 'COACH' && <Link to = "/coachaccountinfo">Account Info</Link>}
                 {sessionStorage.getItem('role') === 'ADMIN' && <Link to = "/adminaccountinfo">Account Info</Link>}
+                <button onClick = {logout}>Logout</button>
             </div>
         </nav>
     )
