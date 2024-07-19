@@ -17,6 +17,7 @@ const CoachListingDetails = () => {
             <p>Type: {listing.type}</p>
             <p>Price: {listing.price}</p>
             <p>Location: {listing.location}</p>
+            <p>Address: {listing.address}</p>
             <h3>Sessions for this Listings: </h3>
             {/**displays all the sessions associated with this listing */}
             <CoachSessionList listing = {listing}/>

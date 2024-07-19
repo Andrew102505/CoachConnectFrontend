@@ -12,6 +12,7 @@ const CreateListing = () => {
     const[image, setImage] = useState('');//we'll come back to figuring out how to accept image files as input later
     const[price, setPrice] = useState();
     const[location, setLocation] = useState('');
+    const[address, setAddress] = useState('');
     //we'll get this from sessionStorage when our login process is set up
     //const[coachId, setCoachId] = useState(354)//useState(sessionStorage.getItem('userid'));//correct this line
     //we want actually store the sessions its just for ease of viewing purposes for the coach trying to create the listing, so they know what sessions they've made for this listing
@@ -33,7 +34,7 @@ const CreateListing = () => {
         e.preventDefault();
         setIsPending(true);
         //need to add the image field at some point
-        let newListing = {title, description, type, price, location, coach};
+        let newListing = {title, description, type, price, location, coach, address};
         ListingService.createListing(newListing).then(res => {//now our listing has been added to the listing table in db
             //we wanted to add the coach object instead of coachId so that when we display the listings we can more easily access the coach name of the listing rather than having to run a query to find the coach by id
             setIsPending(false);
@@ -58,9 +59,12 @@ return(
                 <br />
                 <label htmlFor="price" required>Price Per Session: </label>
                 <input type="number" id = "price" required value = {price} onChange={e => setPrice(e.target.value)}/>
+                <br />
                 <label htmlFor="location" required>Location: </label>
                 <input type="text" id = "location" required value = {location} onChange={e => setLocation(e.target.value)}/>
-                
+                <br />
+                <label htmlFor="address" required>Address: </label>
+                <input type="text" id = "address" required value = {address} onChange={e => setAddress(e.target.value)}/>
                 {!isPending && <button >Create</button>}
                 {isPending && <button>Creating Listing</button>}
                 

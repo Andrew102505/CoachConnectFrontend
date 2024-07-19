@@ -8,15 +8,7 @@ const history = useHistory();
 if(sessionStorage.getItem('role') !== 'CUSTOMER'){
     history.push('/privateaccess');
 }
-function getListing(listingId){
-    //console.log(listingId);
-    ListingService.getListingById(listingId).then(res=>{
-        //console.log(res.data);
-        return res.data;
-    }).catch(err=>{
-        console.log(err);
-      });
-}
+
 function checkout(){
     history.push('/checkout');
 }

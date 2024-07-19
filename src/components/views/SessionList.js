@@ -21,15 +21,15 @@ const SessionList = (props) => {
             props.updateErrorMessage(message);
         }else{
             let duplicate = props.cart.filter(x=>x.id === session.id);
-            console.log(duplicate);
+           
             if(duplicate.length>0){
-                props.updateErrorDate('');
+                props.updateErrorMessage('');
                 setAddedSession('');
                 setIsDuplicate(session?.date);
                 
             }else{
                 props.addSessionToCart(session);
-                props.updateErrorDate('');
+                props.updateErrorMessage('');
                 setIsDuplicate('');
                 setAddedSession(session?.date);
             }

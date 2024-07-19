@@ -17,6 +17,7 @@ const CoachListingsList = (props) => {
                 <div className="listing-preview" key = {listing.id} onClick={()=>goToDetails(listing)}>
                     <h2>{listing.title}</h2>
                     <p>{listing.location}</p>
+                    <p>{listing.address}</p>
                 </div>
             ))}
         </div>
