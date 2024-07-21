@@ -16,6 +16,9 @@ class ListingService {
     getAllCoachListings(coachId){
         return axios.get(LISTING_API_BASE_URL + '/coachlistings/' + coachId);
     }
+    deleteListing(listingId){
+        return axios.delete(LISTING_API_BASE_URL + '/deletelisting/' + listingId);
+    }
     
 }
 

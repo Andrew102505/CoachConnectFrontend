@@ -12,6 +12,9 @@ class CoachService {
     getCoachById(id){
         return axios.get(COACH_API_BASE_URL + '/' + id);
     }
+    deleteCoach(coachId){
+        return axios.delete(COACH_API_BASE_URL + '/deletecoach/' + coachId);
+    }
 }
 
 

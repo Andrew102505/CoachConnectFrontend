@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SessionService from "../../services/SessionService";
 import CustomerService from "../../services/CustomerService";
-
+import {useHistory} from 'react-router-dom';
 const SessionList = (props) => {
     
     const listingId = props.listingId;
@@ -9,8 +9,9 @@ const SessionList = (props) => {
     const [notCustomer, setNotCustomer] = useState(false);
     const[addedSession, setAddedSession] = useState('');
     const[isDuplicate, setIsDuplicate] = useState('');
+    const[toggle, setToggle] = useState(false);
     const sessions = props.sessions;
-    
+    const history = useHistory();
    function addToCart(customerId, session){
     if(sessionStorage.getItem('role') === 'CUSTOMER'){
     SessionService.containsParticipant(session?.id, customerId).then(res => {
@@ -41,6 +42,14 @@ const SessionList = (props) => {
     }
     
    }
+   function deleteSession(sessionId){
+    SessionService.deleteSession(sessionId).then(res => {
+        console.log("Session Deleted");
+        props.reloadPage();
+    }).catch(err=>{
+        console.log(err);
+      });
+   }
    
 
     return(
@@ -53,7 +62,8 @@ const SessionList = (props) => {
                 <p>{session?.name} || {session?.date}</p>
                 <p>Time: {session?.time}</p>
                 <p>Status: {session?.numParticipants}/{session.capacity} enrolled</p>
-                {session?.numParticipants!==session?.capacity && <button onClick = {() => addToCart(props.user?.id, session)}>Add to Cart</button>}
+                {sessionStorage.getItem('role')!=='ADMIN' && session?.numParticipants!==session?.capacity && <button onClick = {() => addToCart(props.user?.id, session)}>Add to Cart</button>}
+                {sessionStorage.getItem('role')==='ADMIN' && <button onClick = {() => deleteSession(session?.id)}>Delete</button>}
                 {session?.numParticipants===session?.capacity && <p>Session Full</p>}
             </div>
             ))}
