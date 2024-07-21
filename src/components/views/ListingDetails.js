@@ -34,6 +34,9 @@ const ListingDetails = (props) => {
     function updateErrorMessage(message){
         setErrorMessage(message);
     }
+    function reloadPage(){
+        window.location.reload();
+    }
     return (
         <div>
             <h2>{listing.title}</h2>
@@ -44,7 +47,7 @@ const ListingDetails = (props) => {
             <p>Location: {listing.location}</p>
             <h3>Available Sessions</h3>
             {errorMessage!=='' && <p>Cannot add to cart - Already enrolled in Session: {errorMessage}</p>}
-            <SessionList listingId = {listing.id} sessions = {sessions} addSessionToCart = {props.addSessionToCart} updateErrorMessage = {updateErrorMessage} user = {props?.user} cart = {props?.cart}/>
+            <SessionList listingId = {listing.id} sessions = {sessions} addSessionToCart = {props.addSessionToCart} updateErrorMessage = {updateErrorMessage} user = {props?.user} cart = {props?.cart} listing = {listing} reloadPage = {reloadPage}/>
             {/**display all the sessions by going threw db and finding all sessions with listing id of listing.id
              * display all of those sessions using the .map function c, basically inject component like you did with Listings
              * and in the session list component for each component add a button that says purchase that will say add to cart

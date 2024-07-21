@@ -21,10 +21,13 @@ const Coaches = () => {
     if(fetched === false){
         getCoaches();
     }
+    function reloadPage(){
+        window.location.reload();
+    }
     return (
         <div className = "Coaches">
             <h2>Coaches</h2>
-            {coaches && <CoachList coaches = {coaches}/>}
+            {coaches && <CoachList coaches = {coaches} reloadPage = {reloadPage}/>}
         </div>
     )
 }

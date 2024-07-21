@@ -1,6 +1,8 @@
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import CoachService from '../../services/CoachService';
 const CoachList = (props) => {
     const coaches = props.coaches;
+    const history = useHistory();
     console.log(coaches);
     const printLevels = coach => {
         let stringLevels = '';
@@ -9,7 +11,15 @@ const CoachList = (props) => {
         });
         return stringLevels;
     }
-    
+    function deleteCoach(coachId){
+        CoachService.deleteCoach(coachId).then(res => {
+            console.log("Coach Deleted");
+            history.push('/coaches');
+            props.reloadPage();
+        }).catch(err=>{
+            console.log(err);
+          });
+    }
     return(
         <div className = "coach-list">
             {coaches.map((coach)=> (
@@ -20,6 +30,7 @@ const CoachList = (props) => {
                         <p>Location: {coach.location}</p>
                         <p>Coaching Levels: {printLevels(coach)}</p>
                     </Link>
+                    {sessionStorage.getItem('role')==='ADMIN' && <button onClick = {() => deleteCoach(coach?.id)}>Delete</button>}
                 </div>
 
             ))};

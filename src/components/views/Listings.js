@@ -19,6 +19,9 @@ const Listings = () => {
     if(fetched==false){
         getListings();
     }
+    function reloadPage(){
+        window.location.reload();
+    }
     return (
         <div className = "listing-page">
             <h4>Filter</h4>
@@ -26,7 +29,7 @@ const Listings = () => {
             <button onClick = {() => setType('Clinic')}>Clinics</button>
             <h2>Available Listings</h2>
             {pending && <div>Loading...</div>}
-            {listings && type === '' && <ListingsList listings = {listings}/>}
+            {listings && type === '' && <ListingsList listings = {listings} reloadPage = {reloadPage}/>}
             {listings && type === 'Private' && <PrivateLessonList listings = {listings}/>}
             {listings && type === 'Clinic' && <ClinicList listings = {listings}/>}
         </div>

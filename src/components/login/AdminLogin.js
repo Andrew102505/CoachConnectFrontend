@@ -12,7 +12,7 @@ const AdminLogin = (props) => {
         e.preventDefault();
         const token = {email, password};//could cause issues since using const 
         setIsPending(true);
-        LoginService.authenticateUser('customer', token)//this is why we made seperate login components for each user type so we could specify the role directly as a parameter
+        LoginService.authenticateUser('admin', token)//this is why we made seperate login components for each user type so we could specify the role directly as a parameter
         .then(res => {
             
             setIsPending(false);

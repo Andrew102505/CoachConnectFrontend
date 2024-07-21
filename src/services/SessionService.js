@@ -29,6 +29,9 @@ class SessionService {
     getParticipantSessions(customerId){
         return axios.get(SESSION_API_BASE_URL + '/participantsessions/' + customerId);
     }
+    deleteSession(sessionId){
+        return axios.delete(SESSION_API_BASE_URL + '/deletesession/' + sessionId)
+    }
 }
 
 export default new SessionService();
