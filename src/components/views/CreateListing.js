@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ListingService from "../../services/ListingService";
 import CoachService from "../../services/CoachService";
+import CreateListingCSS from './CreateListing.module.css';
 //have a state array that contains all of the sessions that have been currently been added to this listing. might need to use bro code video on how to add objects to a state array
 const CreateListing = () => {
 
@@ -45,26 +46,40 @@ const CreateListing = () => {
         getCoach();
     }
 return(
-        <div>
-            <h1>Create Listing</h1>
+        <div className = {CreateListingCSS.createlisting}>
+            <h2>Create Listing</h2>
             <form onSubmit={saveListing}>
-                <label htmlFor="title">Listing Name: </label>
-                <input id = "title" type="text" required value = {title} onChange={e=>setTitle(e.target.value)}/>
+            <div className = {CreateListingCSS.inputbox}>
+                <label htmlFor="title"></label>
+                <input id = "title" type="text" placeholder="Listing name" required value = {title} onChange={e=>setTitle(e.target.value)}/>
+                </div>
                 <br />
-                <label htmlFor="description">Description: </label>
-                <input id = "description" type="text" required value = {description} onChange={e=>setDescription(e.target.value)}/>
+                <div className = {CreateListingCSS.inputbox}>
+                <label htmlFor="description"></label>
+                <input id = "description" type="text" placeholder="Description" required value = {description} onChange={e=>setDescription(e.target.value)}/>
+                </div>
                 <br />
-                <input type="radio" name = "type" value = "Clinic" onChange={e=>setType(e.target.value)}/>Clinic
-                <input type="radio" name = "type" value = "Private" onChange={e=>setType(e.target.value)}/>Private Lesson
+                
+                <div className = {CreateListingCSS.inputbox}>
+                <label htmlFor="type"></label>
+                <input id = "type" type="text" placeholder="Lesson Type: Clinic or Private" required value = {type} onChange={e=>setType(e.target.value)}/>
+                </div>
                 <br />
-                <label htmlFor="price" required>Price Per Session: </label>
-                <input type="number" id = "price" required value = {price} onChange={e => setPrice(e.target.value)}/>
+                <div className = {CreateListingCSS.inputbox}>
+                <label htmlFor="price" required></label>
+                <input type="number" id = "price" placeholder="Price Per Session" required value = {price} onChange={e => setPrice(e.target.value)}/>
+                </div>
                 <br />
-                <label htmlFor="location" required>Location: </label>
-                <input type="text" id = "location" required value = {location} onChange={e => setLocation(e.target.value)}/>
+                <div className = {CreateListingCSS.inputbox}>
+                <label htmlFor="location" required></label>
+                <input type="text" id = "location" required placeholder="Location" value = {location} onChange={e => setLocation(e.target.value)}/>
+                </div>
                 <br />
-                <label htmlFor="address" required>Address: </label>
-                <input type="text" id = "address" required value = {address} onChange={e => setAddress(e.target.value)}/>
+                <div className = {CreateListingCSS.inputbox}>
+                <label htmlFor="address" required></label>
+                <input type="text" id = "address" placeholder="Address" required value = {address} onChange={e => setAddress(e.target.value)}/>
+                </div>
+                <br />
                 {!isPending && <button >Create</button>}
                 {isPending && <button>Creating Listing</button>}
                 

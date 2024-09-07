@@ -2,7 +2,7 @@ import SessionService from "../../services/SessionService";
 import ParticipantSessionsList from "./ParticipantSessionsList";
 import { useState } from "react";
 import { useHistory } from 'react-router-dom';
-
+import CustomerAccountInfoCSS from './CustomerAccountInfo.module.css';
 const CustomerAccountInfo = (props) => {
     const history = useHistory();
     const[participantSessions, setParticipantSessions] = useState(null);
@@ -31,18 +31,19 @@ const CustomerAccountInfo = (props) => {
         <p>Account Type: {props.user?.role.toLowerCase()}</p>
         <br/>
         <h3>Purchase History</h3>
-        <div className="participant-sessions">
-        <div>
-        <div>
+        <div className={CustomerAccountInfoCSS.purchasehistorylist}>
+        
+        
              {participantSessions?.map((session)=>(
-            <div className = "participant-sessions" key = {session?.id}>
-                <p>{session?.title}</p>
-                <p>Session: {session?.name} || {session?.date}</p>
-                <p>Time: {session?.time}</p>
+            <div className = {CustomerAccountInfoCSS.sessionpreview} key = {session?.id}>
+                <h2 className={CustomerAccountInfoCSS.title}>{session?.name}</h2>
+                    <div className={CustomerAccountInfoCSS.info}>
+                        <p><span>Date:</span> {session?.date}</p>
+                        <p><span>Time: </span>  {session?.time}</p>
+            </div>
             </div>
         ))}
-        </div>
-        </div>
+        
         </div>
         </div>
     )

@@ -2,6 +2,7 @@ import { useState } from "react";
 import {useHistory} from 'react-router-dom';
 import CoachService from "../../services/CoachService";
 import Select from 'react-select'; 
+import CoachRegistrationCSS from './CoachRegistration.module.css';
 const CoachRegistration = (props) => {
 
     const [firstName, setFirstName] = useState('');
@@ -40,42 +41,58 @@ const CoachRegistration = (props) => {
         });
     }
     return (
-        <div className="coach-registration">'
+        <div className={CoachRegistrationCSS.coachregistration}>'
         
         <h2>Create Account</h2>
         <form onSubmit={saveCoach}>{/**calls the function when a form is submitted */}
-            <label htmlFor="firstname">First Name: </label>
+        <div className = {CoachRegistrationCSS.inputbox}>
+            <label htmlFor="firstname"></label>
             {/**e is the event object, target is the input element, value is whatever we are trying to type into it  */}
             {/**when the input field is changed, the onChange function will be fired and will use the set function to update the state variable with the text entered in the input field and the value of the input field is dynamically updated */}
-            <input id = "firstname" type="text" required value = {firstName} onChange={(e) => setFirstName(e.target.value)}/>
+            <input id = "firstname" type="text" placeholder="First name" required value = {firstName} onChange={(e) => setFirstName(e.target.value)}/>
+            </div>
             <br></br>
-            <label htmlFor="lastname" required>Last Name: </label>
-            <input id = "lastname" type = "text" required value = {lastName} onChange={(e) => setLastName(e.target.value)}/>
+            <div className = {CoachRegistrationCSS.inputbox}>
+            <label htmlFor="lastname" required></label>
+            <input id = "lastname" type = "text" placeholder="Last name" required value = {lastName} onChange={(e) => setLastName(e.target.value)}/>
+            </div>
             <br></br>
-            <label htmlFor="email" required>Email: </label>
-            <input id = "email" type = "text" required value = {email} onChange={(e) => setEmail(e.target.value)}/>
+            <div className = {CoachRegistrationCSS.inputbox}>
+            <label htmlFor="email" required></label>
+            <input id = "email" type = "text" placeholder="Email" required value = {email} onChange={(e) => setEmail(e.target.value)}/>
+            </div>
             <br></br>
-            <label htmlFor="password" required>Password: </label>
-            <input id = "password" type = "text" required value = {password} onChange={(e) => setPassword(e.target.value)}/>
+            <div className = {CoachRegistrationCSS.inputbox}>
+            <label htmlFor="password" required></label>
+            <input id = "password" type = "text" placeholder="Password" required value = {password} onChange={(e) => setPassword(e.target.value)}/>
+            </div>
             <br></br>
             <br></br>
-            <label htmlFor="levels" required>Select all skill levels you are interested in coaching: </label>
+            <label htmlFor="levels" required></label>
             {/**have to install react select in terminal to use this Select tag */}
-            <Select options = {options} value = {levelsObjectArray} onChange={handleSelect} isMulti = {true}/>
+            <Select options = {options} value = {levelsObjectArray} placeholder = "Coaching Levels" onChange={handleSelect} isMulti = {true}/>
             
             <br></br>
             <br></br>
-            <label htmlFor="yearsOfExperience" required>Years of Experience Playing Tennis: </label>
-            <input id = "yearsOfExperience" type = "number" required value = {yearsOfExperience} onChange={(e) => setYearsOfExperience(e.target.value)}/>
+            <div className = {CoachRegistrationCSS.inputbox}>
+            <label htmlFor="yearsOfExperience" required> </label>
+            <input id = "yearsOfExperience" type = "number" placeholder="Years of Experience" required value = {yearsOfExperience} onChange={(e) => setYearsOfExperience(e.target.value)}/>
+            </div>
             <br></br>
-            <label htmlFor="ustaRating" required>USTA NTPR Rating: </label>
-            <input id = "ustaRating" type = "number" required value = {ustaRating} onChange={(e) => setUSTARating(e.target.value)}/>
+            <div className = {CoachRegistrationCSS.inputbox}>
+            <label htmlFor="ustaRating" required></label>
+            <input id = "ustaRating" type = "number" placeholder="USTA NTPR Rating" required value = {ustaRating} onChange={(e) => setUSTARating(e.target.value)}/>
+            </div>
             <br></br>
-            <label htmlFor="bio" required>Bio: </label>
-            <input id = "bio" type = "text" required value = {bio} onChange={(e) => setBio(e.target.value)}/>
+            <div className = {CoachRegistrationCSS.inputbox}>
+            <label htmlFor="bio" required></label>
+            <input id = "bio" type = "text" placeholder="Bio" required value = {bio} onChange={(e) => setBio(e.target.value)}/>
+            </div>
             <br></br>
-            <label htmlFor="location" required>Primary coaching area - format: city, state </label>
-            <input id = "location" type = "text" required value = {location} onChange={(e) => setLocation(e.target.value)}/>
+            <div className = {CoachRegistrationCSS.inputbox}>
+            <label htmlFor="location" required></label>
+            <input id = "location" type = "text" placeholder="Coaching area - format: city, state" required value = {location} onChange={(e) => setLocation(e.target.value)}/>
+            </div>
             <br></br>
             {/**the button attribute will ilicit a submit event */}
             {!isPending && <button >Create</button>}

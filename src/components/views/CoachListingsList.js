@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import CoachListingsListCSS from './CoachListingsList.module.css';
 const CoachListingsList = (props) => {
 
     const listings = props.listings;
@@ -12,12 +13,16 @@ const CoachListingsList = (props) => {
     }
 
     return (
-        <div className = "listings-list">
+        <div className = {CoachListingsListCSS.listingslist}>
             {listings.map((listing)=>(
-                <div className="listing-preview" key = {listing.id} onClick={()=>goToDetails(listing)}>
-                    <h2>{listing.title}</h2>
-                    <p>{listing.location}</p>
-                    <p>{listing.address}</p>
+                <div className={CoachListingsListCSS.listingpreview} key = {listing.id} onClick={()=>goToDetails(listing)}>
+                    
+                    <h2 className={CoachListingsListCSS.title}>{listing.title}</h2>
+                    <div className={CoachListingsListCSS.info}>
+                    <p><span>Coach:</span> {listing.coach.firstName} {listing.coach.lastName}</p>
+                    <p><span>Area: </span>  {listing.location}</p>
+                    <p><span>Location: </span> {listing.address}</p>
+                </div>
                 </div>
             ))}
         </div>

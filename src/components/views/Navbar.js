@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {Link, useHistory} from 'react-router-dom';
+import NavbarCSS from './Navbar.module.css';
 const Navbar = (props) => {
 
     const history = useHistory();
@@ -39,21 +40,27 @@ const Navbar = (props) => {
     window.location.reload();
    }
     return(
-        <nav className="navbar">
-            <h1>CoachConnect</h1>
-            <p>{props.user?.firstName} {props.user?.lastName}</p>
-            <div className="links">
-                <Link to =  "/">Home</Link>
-                <Link to = "/listings">Listings</Link>
-                <Link to = "/coaches">Coaches</Link>
-                {props?.user?.role === 'COACH'/*sessionStorage.getItem('role')==='COACH'*/ && <Link to = "/createlisting">Create Listing</Link>}
-                <Link to = "/loginselection">Login</Link>
-                {sessionStorage.getItem('role') === 'CUSTOMER' && <Link to = "/shoppingcart">Cart</Link>}
-                {sessionStorage.getItem('role') === 'COACH' && <Link to = "/coachlistings">My Listings</Link>}
-                {sessionStorage.getItem('role') === 'CUSTOMER' && <Link to = "/customeraccountinfo">Account Info</Link>}
-                {sessionStorage.getItem('role') === 'COACH' && <Link to = "/coachaccountinfo">Account Info</Link>}
-                {sessionStorage.getItem('role') === 'ADMIN' && <Link to = "/adminaccountinfo">Account Info</Link>}
+        <nav className={NavbarCSS.navbar}>
+            <div className={NavbarCSS.navdiv}>
+            <div className={NavbarCSS.logo}><img src="/images/logo.png" alt="" /></div>{/*put image in here*/}
+            
+                <ul>
+                
+                <li><div><Link to =  "/" className={NavbarCSS.link}>Home</Link></div></li>
+                <li><div><Link to = "/listings" className={NavbarCSS.link}>Listings</Link></div></li>
+                <li><div><Link to = "/coaches" className={NavbarCSS.link}>Coaches</Link></div></li>
+                {props?.user?.role === 'COACH'/*sessionStorage.getItem('role')==='COACH'*/ && <li><div><Link to = "/createlisting" className={NavbarCSS.link}>Create Listing</Link></div></li>}
+                {sessionStorage.getItem('role') === 'CUSTOMER' && <li><div><Link to = "/shoppingcart" className={NavbarCSS.link}>Cart</Link></div></li>}
+                {sessionStorage.getItem('role') === 'COACH' && <li><div><Link to = "/coachlistings" className={NavbarCSS.link}>My Listings</Link></div></li>}
+                {sessionStorage.getItem('role') === 'CUSTOMER' && <li><div><Link to = "/customeraccountinfo" className={NavbarCSS.link}>Account Info</Link></div></li>}
+                {sessionStorage.getItem('role') === 'COACH' && <li><div><Link to = "/coachaccountinfo" className={NavbarCSS.link}>Account Info</Link></div></li>}
+                {sessionStorage.getItem('role') === 'ADMIN' && <li><div><Link to = "/adminaccountinfo" className={NavbarCSS.link}>Account Info</Link></div></li>}
+                
+                <Link to = "/loginselection"><button>Login</button></Link>
                 <button onClick = {logout}>Logout</button>
+                <li><div className = {NavbarCSS.currentuser}>{props.user?.firstName} {props.user?.lastName}</div></li>
+                </ul>
+                
             </div>
         </nav>
     )

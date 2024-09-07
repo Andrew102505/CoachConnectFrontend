@@ -24,8 +24,8 @@ const CoachListings = (props) => {
     }
 
     return(
-        <div className="coach-listings">
-            <h2>Available Listings</h2>
+        <div className="coachlistings">
+            <h1>My Listings</h1>
             {pending && <div>Loading...</div>}
             {listings && <CoachListingsList listings = {listings}/>}
         </div>

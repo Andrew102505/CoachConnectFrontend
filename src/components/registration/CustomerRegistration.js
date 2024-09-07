@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {useHistory} from 'react-router-dom';
 import CustomerService from "../../services/CustomerService";//../moves us out of the current directory this file is in
-
+import CustomerRegistrationCSS from './CustomerRegistration.module.css';
 const CustomerRegistration = (props) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -30,22 +30,30 @@ const CustomerRegistration = (props) => {
     }
 
     return(
-        <div className = 'customer-registration'>
+        <div className = {CustomerRegistrationCSS.customerregistration}>
             <h2>Create Account</h2>
             <form onSubmit={saveCustomer}>{/**calls the function when a form is submitted */}
-                <label htmlFor="firstname">First Name: </label>
+            <div className = {CustomerRegistrationCSS.inputbox}>
+                <label htmlFor="firstname"></label>
                 {/**e is the event object, target is the input element, value is whatever we are trying to type into it  */}
                 {/**when the input field is changed, the onChange function will be fired and will use the set function to update the state variable with the text entered in the input field and the value of the input field is dynamically updated */}
-                <input id = "firstname" type="text" required value = {firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                <input id = "firstname" type="text" placeholder="First name" required value = {firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                </div>
                 <br></br>
-                <label htmlFor="lastname" required>Last Name: </label>
-                <input id = "lastname" type = "text" required value = {lastName} onChange={(e) => setLastName(e.target.value)}/>
+                <div className = {CustomerRegistrationCSS.inputbox}>
+                <label htmlFor="lastname" required></label>
+                <input id = "lastname" type = "text" placeholder="Last name" required value = {lastName} onChange={(e) => setLastName(e.target.value)}/>
+                </div>
                 <br></br>
-                <label htmlFor="email" required>Email: </label>
-                <input id = "email" type = "text" required value = {email} onChange={(e) => setEmail(e.target.value)}/>
+                <div className = {CustomerRegistrationCSS.inputbox}>
+                <label htmlFor="email" required></label>
+                <input id = "email" type = "text" placeholder="Email" required value = {email} onChange={(e) => setEmail(e.target.value)}/>
+                </div>
                 <br></br>
-                <label htmlFor="password" required>Password: </label>
-                <input id = "password" type = "text" required value = {password} onChange={(e) => setPassword(e.target.value)}/>
+                <div className = {CustomerRegistrationCSS.inputbox}>
+                <label htmlFor="password" required></label>
+                <input id = "password" type = "text" placeholder="Password" required value = {password} onChange={(e) => setPassword(e.target.value)}/>
+                </div>
                 <br></br>
                 {/**the button attribute will ilicit a submit event */}
                 {!isPending && <button >Create</button>}

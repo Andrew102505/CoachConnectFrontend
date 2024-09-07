@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 import ListingService from "../../services/ListingService";
-
+import ShoppingCartCSS from './ShoppingCart.module.css';
 //this is where we will list all of the items in the cart
 const ShoppingCart = (props) => {
 //create a function to delete a session from the cart
@@ -19,15 +19,20 @@ function removeSession(sessionId){
     window.location.reload();
 }
 return (
-        <div className="shopping-cart-items">
+    <div>
+        <div className={ShoppingCartCSS.shoppingcartlist}>
             {props.cart?.map((session)=>(
-                <div className="session-info" key = {session.id}>
-                    <p>{session?.title}</p>
-                    <p>{session?.name} || {session?.date}</p>
-                    <p>Time: {session?.time}</p>
-                    <button onClick = {() => removeSession(session.id)}>Remove from Cart</button>
+                <div className={ShoppingCartCSS.sessionpreview} key = {session.id}>
+                    <h2 className={ShoppingCartCSS.title}>{session?.name}</h2>
+                    <div className={ShoppingCartCSS.info}>
+                        <p><span>Date:</span> {session?.date}</p>
+                        <p><span>Time: </span>  {session?.time}</p>
+                        <button onClick = {() => removeSession(session.id)}>Remove from Cart</button>
+                    </div>
+                   
                 </div>
             ))}
+            </div>
             <button onClick = {checkout}>Checkout</button>
         </div>
     )

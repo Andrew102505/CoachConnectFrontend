@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CoachService from "../../services/CoachService"
 import CoachList from "./CoachList";
+import CoachesCSS from './Coaches.module.css';
 const Coaches = () => {
 
     //need to use a method that will all coaches from the db
@@ -25,7 +26,7 @@ const Coaches = () => {
         window.location.reload();
     }
     return (
-        <div className = "Coaches">
+        <div className = {CoachesCSS.coaches}>
             <h2>Coaches</h2>
             {coaches && <CoachList coaches = {coaches} reloadPage = {reloadPage}/>}
         </div>

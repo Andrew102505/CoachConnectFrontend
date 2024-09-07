@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LoginService from "../../services/LoginService";
 import { useHistory } from "react-router-dom";
+import CoachLoginCSS from './CoachLogin.module.css';
 const CoachLogin = (props) => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
@@ -26,18 +27,26 @@ const CoachLogin = (props) => {
     }
 
     return (
-        <div className="coach-login">
+        <div className={CoachLoginCSS.coachloginelement}>
+        <div className={CoachLoginCSS.coachlogin}>
             <h2>Login</h2>
             <form onSubmit = {authenticateUser}>
-            <label htmlFor="email" required>Email: </label>
-                <input id = "email" type = "text" required value = {email} onChange={(e) => setEmail(e.target.value)}/>
+                <div className = {CoachLoginCSS.inputbox}>
+                <label htmlFor="email" required></label>
+                <input id = "email" type = "text" placeholder="Email" required value = {email} onChange={(e) => setEmail(e.target.value)}/>
+                <i className='bx bxs-user'></i>
+                </div>
                 <br></br>
-                <label htmlFor="password" required>Password: </label>
-                <input id = "password" type = "text" required value = {password} onChange={(e) => setPassword(e.target.value)}/>
+                <div className = {CoachLoginCSS.inputbox}>
+                <label htmlFor="password" required></label>
+                <input id = "password" type = "text" placeholder="Password" required value = {password} onChange={(e) => setPassword(e.target.value)}/>
+                <i className='bx bxs-lock-alt' ></i>
+                </div>
                 {invalid && <p>Invalid username and password</p>}
                 {!isPending && <button >Sign in</button>}
                 {isPending && <button>Signing in</button>}
             </form>
+        </div>
         </div>
     )
 }
