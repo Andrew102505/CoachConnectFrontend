@@ -1,6 +1,7 @@
 import CustomerService from '../../services/CustomerService';
 import SessionService from '../../services/SessionService';
 import { useHistory } from 'react-router-dom';
+import CheckoutCSS from './Checkout.module.css';
 const Checkout = (props) => {
     const sessions = props.cart;//cart contains all the sessions the customer signed up for
     console.log("!!!!!!!!!!!!!!");
@@ -25,13 +26,16 @@ const Checkout = (props) => {
     return(
         <div>
             <h2>Your Cart</h2>
-            <div className='sessions'>
+            <div className={CheckoutCSS.checkoutlist}>
             {props.cart?.map((session)=>(
-                <div className="session-info" key = {session.id}>
-                    <p>{session?.title}</p>
-                    <p>{session?.name} || {session?.date}</p>
-                    <p>Time: {session?.time}</p>
-                </div>
+                <div className={CheckoutCSS.sessionpreview} key = {session.id}>
+                   <h2 className={CheckoutCSS.title}>{session?.name}</h2>
+                    <div className={CheckoutCSS.info}>
+                        <p><span>Date:</span> {session?.date}</p>
+                        <p><span>Time: </span>  {session?.time}</p>
+                        
+                    </div>
+                    </div>
             ))}
             </div>
             <h2>Paywall Here</h2>

@@ -3,6 +3,7 @@ import ListingsList from "./ListingsList";
 import PrivateLessonList from "./PrivateLessonList";
 import ClinicList from "./ClinicList";
 import { useState } from "react";
+import ListingsCSS from './Listings.module.css'
 const Listings = () => {
     const[fetched, setFetched] = useState(false);
     const[pending, setPending] = useState(true);
@@ -23,11 +24,11 @@ const Listings = () => {
         window.location.reload();
     }
     return (
-        <div className = "listing-page">
+        <div className = {ListingsCSS.listingspage}>
+            <h2>Available Listings</h2>
             <h4>Filter</h4>
             <button onClick = {() => setType('Private')}>Private Lessons</button>
             <button onClick = {() => setType('Clinic')}>Clinics</button>
-            <h2>Available Listings</h2>
             {pending && <div>Loading...</div>}
             {listings && type === '' && <ListingsList listings = {listings} reloadPage = {reloadPage}/>}
             {listings && type === 'Private' && <PrivateLessonList listings = {listings}/>}

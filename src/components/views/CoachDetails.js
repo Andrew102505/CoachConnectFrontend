@@ -1,6 +1,7 @@
 import {useParams} from 'react-router-dom';
 import { useState } from 'react';
 import CoachService from '../../services/CoachService';
+import CoachDetailsCSS from './CoachDetails.module.css';
 const CoachDetails = () => {
     
     //todo you need to create a service method to fetch coach by id and display the info in the coach details page
@@ -38,16 +39,34 @@ const CoachDetails = () => {
     }
 
     return (
-        <div className="coach-details">
+        <div className={CoachDetailsCSS.coachdetails}>
             {coach &&(
-                <article>
-                    <h2>{coach.firstName} {coach?.lastName}</h2>
-                    <p>Coaching Levels: {printLevels(coach)}</p>
-                    <p>Years Playing Tennis: {coach?.yearsOfExperience}</p>
-                    <p>USTA NTPR Rating: {coach?.ustaRating}</p>
-                    <p>{coach.firstName}'s Bio: {coach?.bio}</p>
-                    <p>Coaching Area: {coach?.location}</p>
-                </article>
+                <table className = {CoachDetailsCSS.info}>
+                    <tr>
+                        <td className = {CoachDetailsCSS.category}>Name </td>
+                        <td className = {CoachDetailsCSS.data}>{coach.firstName} {coach?.lastName}</td>
+                    </tr>
+                    <tr>
+                        <td className = {CoachDetailsCSS.category}>Coaching Levels </td>
+                        <td className = {CoachDetailsCSS.data}>{printLevels(coach)}</td>
+                    </tr>
+                    <tr>
+                        <td className = {CoachDetailsCSS.category}>Years Playing Tennis </td>
+                        <td className = {CoachDetailsCSS.data}>{coach?.yearsOfExperience}</td>
+                    </tr>
+                    <tr>
+                        <td className = {CoachDetailsCSS.category}>USTA NTPR Rating</td>
+                        <td className = {CoachDetailsCSS.data}>{coach?.ustaRating}</td>
+                    </tr>
+                    <tr>
+                        <td className = {CoachDetailsCSS.category}>{coach.firstName}'s Bio</td>
+                        <td className = {CoachDetailsCSS.data}>{coach?.bio}</td>
+                    </tr>
+                    <tr>
+                        <td className = {CoachDetailsCSS.category}>Coaching Area</td>
+                        <td className = {CoachDetailsCSS.data}>{coach?.location}</td>
+                    </tr>
+                </table>
             )}
         </div>
     )

@@ -2,6 +2,7 @@ import { useState } from "react";
 import SessionService from "../../services/SessionService";
 import CustomerService from "../../services/CustomerService";
 import {useHistory} from 'react-router-dom';
+import SessionListCSS from './SessionList.module.css';
 const SessionList = (props) => {
     
     const listingId = props.listingId;
@@ -53,18 +54,22 @@ const SessionList = (props) => {
    
 
     return(
-        <div className = "session-list">
-            {notCustomer && <p>Customer account is required to purchase sessions.</p> }
+        <div className = {SessionListCSS.sessionlist}>
+            {sessions?.map((session) => (
+            <div className={SessionListCSS.sessionpreview} key = {session?.id}>
+                <h2 className={SessionListCSS.title}>{session?.name}</h2>
+                <div className={SessionListCSS.info}>
+                    <p><span>Date:</span> {session?.date}</p>
+                    <p><span>Time: </span>  {session?.time}</p>
+                    <p><span>Status: </span> {session?.numParticipants}/{session.capacity} enrolled</p>
+                    {sessionStorage.getItem('role')!=='ADMIN' && session?.numParticipants!==session?.capacity && <button onClick = {() => addToCart(props.user?.id, session)}>Add to Cart</button>}
+                    {sessionStorage.getItem('role')==='ADMIN' && <button onClick = {() => deleteSession(session?.id)}>Delete</button>}
+                    {notCustomer && <p>Customer account is required to purchase sessions.</p> }
             {addedSession !== '' && <p>Session - {addedSession} added to cart!</p>}
             {isDuplicate !== '' && <p>Session - {addedSession} is already in cart.</p>}
-            {sessions?.map((session) => (
-            <div className="session-info" key = {session?.id}>
-                <p>{session?.name} || {session?.date}</p>
-                <p>Time: {session?.time}</p>
-                <p>Status: {session?.numParticipants}/{session.capacity} enrolled</p>
-                {sessionStorage.getItem('role')!=='ADMIN' && session?.numParticipants!==session?.capacity && <button onClick = {() => addToCart(props.user?.id, session)}>Add to Cart</button>}
-                {sessionStorage.getItem('role')==='ADMIN' && <button onClick = {() => deleteSession(session?.id)}>Delete</button>}
-                {session?.numParticipants===session?.capacity && <p>Session Full</p>}
+            {session?.numParticipants===session?.capacity && <p id = {SessionListCSS.full}>Session Full</p>}
+                </div>
+               
             </div>
             ))}
         </div>

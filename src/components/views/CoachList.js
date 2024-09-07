@@ -1,5 +1,6 @@
 import {Link, useHistory} from 'react-router-dom';
 import CoachService from '../../services/CoachService';
+import CoachListCSS from './CoachList.module.css';
 const CoachList = (props) => {
     const coaches = props.coaches;
     const history = useHistory();
@@ -21,16 +22,19 @@ const CoachList = (props) => {
           });
     }
     return(
-        <div className = "coach-list">
+        <div className = {CoachListCSS.coachlist}>
             {coaches.map((coach)=> (
-                <div className="coach-preview" key = {coach.id}>
+                <div className={CoachListCSS.coachpreview} key = {coach.id}>
                     {/**this link takes us to the coach-details page for this coach */}
-                    <Link to = {`/coachdetails/${coach.id}`}>
-                        <h2>{coach.firstName} {coach.lastName}</h2>
-                        <p>Location: {coach.location}</p>
-                        <p>Coaching Levels: {printLevels(coach)}</p>
+                    <Link to = {`/coachdetails/${coach.id}`} className={CoachListCSS.coachlink}>
+                        <h2 className = {CoachListCSS.title}>{coach.firstName} {coach.lastName}</h2>
+                        <div className={CoachListCSS.info}>
+                        <p><span>Location:</span> {coach.location}</p>
+                        <p><span>Coaching Levels:</span> {printLevels(coach)}</p>
+                        {sessionStorage.getItem('role')==='ADMIN' && <button onClick = {() => deleteCoach(coach?.id)}>Delete</button>}
+                        </div>
                     </Link>
-                    {sessionStorage.getItem('role')==='ADMIN' && <button onClick = {() => deleteCoach(coach?.id)}>Delete</button>}
+                    
                 </div>
 
             ))};

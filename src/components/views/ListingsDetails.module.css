@@ -1,0 +1,20 @@
+.category{
+    background-color: rgb(0,255,0);
+    font-weight: bold;
+    width:200px;
+}
+.data{
+    font-style: verdana;
+}
+.listingdetails td{
+    border-radius:5px;
+    border-style:solid;
+    border-color:rgb(61, 56, 53);
+    border-width: 1px;
+    height:15px;
+}
+
+.info{
+    margin:auto;
+    border-spacing: 15px;
+}

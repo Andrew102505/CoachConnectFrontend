@@ -2,6 +2,7 @@ import {useLocation, useHistory} from 'react-router-dom';
 import {useState} from 'react';
 import CoachService from '../../services/CoachService';
 import SessionService from '../../services/SessionService';
+import CreateSessionCSS from './CreateSession.module.css';
 const CreateSession = () => {
     const[name, setName] = useState('');
     const[startTime, setStartTime] = useState('00:00 am/pm');
@@ -30,23 +31,33 @@ const CreateSession = () => {
         });
     }
     return (
-        <div>
+        <div className = {CreateSessionCSS.createsession}>
             <h2>Create a Session</h2>
             <form onSubmit={saveSession}>
-                <label htmlFor="name">Name: </label>
-                <input id = "name" type="text" required value = {name} onChange={(e) => setName(e.target.value)}/>
+            <div className = {CreateSessionCSS.inputbox}>
+                <label htmlFor="name"></label>
+                <input id = "name" type="text" placeholder='Name' required value = {name} onChange={(e) => setName(e.target.value)}/>
+                </div>
                 <br></br>
-                <label htmlFor="startTime">Start Time: </label>
-                <input id = "startTime" type="text" required value = {startTime} onChange={(e) => setStartTime(e.target.value)}/>
+                <div className = {CreateSessionCSS.inputbox}>
+                <label htmlFor="startTime"></label>
+                <input id = "startTime" type="text" placeholder='Start Time' required value = {startTime} onChange={(e) => setStartTime(e.target.value)}/>
+                </div>
                 <br></br>
-                <label htmlFor="endTime">End Time: </label>
-                <input id = "endTime" type="text" required value = {endTime} onChange={(e) => setEndTime(e.target.value)}/>
+                <div className = {CreateSessionCSS.inputbox}>
+                <label htmlFor="endTime"></label>
+                <input id = "endTime" type="text" placeholder='End Time' required value = {endTime} onChange={(e) => setEndTime(e.target.value)}/>
+                </div>
                 <br></br>
-                <label htmlFor="date">Date: </label>
-                <input id = "date" type="text" required value = {date} onChange={(e) => setDate(e.target.value)}/>
+                <div className = {CreateSessionCSS.inputbox}>
+                <label htmlFor="date"></label>
+                <input id = "date" type="text" placeholder='Date' required value = {date} onChange={(e) => setDate(e.target.value)}/>
+                </div>
                 <br></br>
-                <label htmlFor="capacity">Capacity: </label>
-                <input id = "capacity" type="number" required value = {capacity} onChange={(e) => setCapacity(e.target.value)}/>
+                <div className = {CreateSessionCSS.inputbox}>
+                <label htmlFor="capacity"> </label>
+                <input id = "capacity" type="number" placeholder='Capacity' required value = {capacity} onChange={(e) => setCapacity(e.target.value)}/>
+                </div>
                 <br></br>
                 <button>Add</button>
             </form>
