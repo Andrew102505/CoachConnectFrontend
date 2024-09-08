@@ -1,6 +1,7 @@
 import {useHistory} from 'react-router-dom';
-import ListingService from '../../services/ListingService';
 import ClinicListCSS from './ClinicList.module.css';
+import ListingService from '../../services/ListingService';
+
 const ClinicList = (props) => {
 
     const listings = props.listings;//note each listing in listings has a coach object associated with them
