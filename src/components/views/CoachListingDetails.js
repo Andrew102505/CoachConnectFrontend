@@ -38,7 +38,7 @@ const CoachListingDetails = () => {
                         <td className = {CoachListingDetailsCSS.data}>{listing.address}</td>
                     </tr>
                 </table>
-            <h3>Sessions for this Listings: </h3>
+            <h3>Sessions for this Listing </h3>
             {/**displays all the sessions associated with this listing */}
             <CoachSessionList listing = {listing}/>
             <button onClick = {createSession}>Add Session</button>
