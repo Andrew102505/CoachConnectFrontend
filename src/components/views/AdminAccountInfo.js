@@ -1,4 +1,5 @@
 import {useHistory} from 'react-router-dom';
+import AdminAccountInfoCSS from './AdminAccountInfo.module.css';
 const AdminAccountInfo = (props) => { 
 
     const history = useHistory();
@@ -7,12 +8,23 @@ const AdminAccountInfo = (props) => {
     }
 
     return(
-        <div className="admin-info">
-            <h1>Account Info</h1>
-            <p>Name: {props.user?.firstName} {props.user?.lastName}</p>
-            <p>Email: {props.user?.email}</p>
-            <p>Account Type: {props.user?.role.toLowerCase()}</p>
-        </div>
+        <div className={AdminAccountInfoCSS.admininfo}>
+        <h1>Account Info</h1>
+        <table className={AdminAccountInfoCSS.information}>
+        <tr>
+            <td className={AdminAccountInfoCSS.category}>Name</td>
+            <td className={AdminAccountInfoCSS.data}>{props.user?.firstName} {props.user?.lastName}</td>
+        </tr>
+        <tr>
+            <td className={AdminAccountInfoCSS.category}>Email</td>
+            <td className={AdminAccountInfoCSS.data}>{props.user?.email}</td>
+        </tr>
+        <tr>
+            <td className={AdminAccountInfoCSS.category}>Account Type</td>
+            <td className={AdminAccountInfoCSS.data}>{props.user?.role.toLowerCase()}</td>
+        </tr>
+    </table>
+    </div>
     )
 }
 

@@ -5,9 +5,7 @@ import SessionService from '../../services/SessionService';
 import CreateSessionCSS from './CreateSession.module.css';
 const CreateSession = () => {
     const[name, setName] = useState('');
-    const[startTime, setStartTime] = useState('00:00 am/pm');
-    const[endTime, setEndTime] = useState('00:00 am/pm');
-    const[time, setTime] = useState(null);
+    const[time, setTime] = useState('00:00 am/pm - 00:00 am/pm');
     const[session, setSession] = useState(null);
     const[date, setDate] = useState('mm/dd/yyyy');
     const[capacity, setCapacity] = useState(null);
@@ -17,8 +15,6 @@ const CreateSession = () => {
     const[title, setTitle] = useState(location.state?.listing.title);
     function saveSession(e){//when this method is called we already have all of our vars to create a session object
         e.preventDefault();
-        let concatTime = `${startTime} - ${endTime}`;
-        setTime(concatTime);
         let newSession = {time, date, listingId, capacity, name, title};
         setSession(newSession);
         //now call the session service to store this session to the db
@@ -40,14 +36,10 @@ const CreateSession = () => {
                 </div>
                 <br></br>
                 <div className = {CreateSessionCSS.inputbox}>
-                <label htmlFor="startTime"></label>
-                <input id = "startTime" type="text" placeholder='Start Time' required value = {startTime} onChange={(e) => setStartTime(e.target.value)}/>
+                <label htmlFor="time"></label>
+                <input id = "time" type="text" placeholder='Start - End Time' required value = {time} onChange={(e) => setTime(e.target.value)}/>
                 </div>
                 <br></br>
-                <div className = {CreateSessionCSS.inputbox}>
-                <label htmlFor="endTime"></label>
-                <input id = "endTime" type="text" placeholder='End Time' required value = {endTime} onChange={(e) => setEndTime(e.target.value)}/>
-                </div>
                 <br></br>
                 <div className = {CreateSessionCSS.inputbox}>
                 <label htmlFor="date"></label>

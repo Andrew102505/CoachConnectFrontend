@@ -27,8 +27,11 @@ const Listings = () => {
         <div className = {ListingsCSS.listingspage}>
             <h2>Available Listings</h2>
             <h4>Filter</h4>
+            <div className={ListingsCSS.buttons}>
+            <button onClick = {() => setType('')}>All</button>
             <button onClick = {() => setType('Private')}>Private Lessons</button>
             <button onClick = {() => setType('Clinic')}>Clinics</button>
+            </div>
             {pending && <div>Loading...</div>}
             {listings && type === '' && <ListingsList listings = {listings} reloadPage = {reloadPage}/>}
             {listings && type === 'Private' && <PrivateLessonList listings = {listings}/>}

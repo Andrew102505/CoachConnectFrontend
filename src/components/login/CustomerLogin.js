@@ -15,6 +15,7 @@ const CustomerLogin = (props) => {
         setIsPending(true);
         LoginService.authenticateUser('customer', token)//this is why we made seperate login components for each user type so we could specify the role directly as a parameter
         .then(res => {
+            console.log("inside");
             setIsPending(false);
             //need to remember that the id as well as all other values in storage are stored as type string
             
@@ -25,6 +26,7 @@ const CustomerLogin = (props) => {
             history.push('/');
             }).catch(err=>{
                 setInvalid(true);
+                setIsPending(false);
               });
                 
             }
@@ -48,7 +50,7 @@ const CustomerLogin = (props) => {
                 <input id = "password" type = "text" placeholder="Password" required value = {password} onChange={(e) => setPassword(e.target.value)}/>
                 <i className='bx bxs-lock-alt' ></i>
                 </div>
-                {invalid && <p>Invalid username and password</p>}
+                {invalid && <p className={CustomerLoginCSS.invalid}>Invalid username and password. Try again.</p>}
                 {!isPending && <button >Sign in</button>}
                 {isPending && <button>Signing in</button>}
             </form>

@@ -21,6 +21,9 @@ const CoachList = (props) => {
             console.log(err);
           });
     }
+    function goToDetails(coachId){
+        history.push('/coachdetails/' + coachId);
+    }
     return(
         <div className = {CoachListCSS.coachlist}>
             {coaches.map((coach)=> (
@@ -31,6 +34,7 @@ const CoachList = (props) => {
                         <div className={CoachListCSS.info}>
                         <p><span>Location:</span> {coach.location}</p>
                         <p><span>Coaching Levels:</span> {printLevels(coach)}</p>
+                        <button onClick={()=>goToDetails(coach.id)}>Details</button>
                         {sessionStorage.getItem('role')==='ADMIN' && <button onClick = {() => deleteCoach(coach?.id)}>Delete</button>}
                         </div>
                     </Link>
