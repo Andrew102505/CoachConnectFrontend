@@ -59,14 +59,18 @@ const ListingDetails = (props) => {
                     </tr>
                     <tr>
                         <td className = {ListingDetailsCSS.category}>Price </td>
-                        <td className = {ListingDetailsCSS.data}>{listing.price}</td>
+                        <td className = {ListingDetailsCSS.data}>${listing.price}</td>
                     </tr>
                     <tr>
                         <td className = {ListingDetailsCSS.category}>Location</td>
                         <td className = {ListingDetailsCSS.data}>{listing.location}</td>
                     </tr>
+                    <tr>
+                        <td className = {ListingDetailsCSS.category}>Address</td>
+                        <td className = {ListingDetailsCSS.data}>{listing.address}</td>
+                    </tr>
                 </table>
-            <h3>Available Sessions</h3>
+            <h2>Available Sessions</h2>
             {errorMessage!=='' && <p>Cannot add to cart - Already enrolled in Session: {errorMessage}</p>}
             <SessionList listingId = {listing.id} sessions = {sessions} addSessionToCart = {props.addSessionToCart} updateErrorMessage = {updateErrorMessage} user = {props?.user} cart = {props?.cart} listing = {listing} reloadPage = {reloadPage}/>
             {/**display all the sessions by going threw db and finding all sessions with listing id of listing.id

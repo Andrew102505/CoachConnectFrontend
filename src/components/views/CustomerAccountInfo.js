@@ -24,13 +24,26 @@ const CustomerAccountInfo = (props) => {
         getParticipantSessions();
     }
     return (
-       <div className="customer-info">
+       <div className={CustomerAccountInfoCSS.customerinfo}>
         <h1>Account Info</h1>
-        <p>Name: {props.user?.firstName} {props.user?.lastName}</p>
-        <p>Email: {props.user?.email}</p>
-        <p>Account Type: {props.user?.role.toLowerCase()}</p>
+        <table className={CustomerAccountInfoCSS.information}>
+            <tr>
+                <td className={CustomerAccountInfoCSS.category}>Name</td>
+                <td className={CustomerAccountInfoCSS.data}>{props.user?.firstName} {props.user?.lastName}</td>
+            </tr>
+            <tr>
+                <td className={CustomerAccountInfoCSS.category}>Email</td>
+                <td className={CustomerAccountInfoCSS.data}>{props.user?.email}</td>
+            </tr>
+            <tr>
+                <td className={CustomerAccountInfoCSS.category}>Account Type</td>
+                <td className={CustomerAccountInfoCSS.data}>{props.user?.role.toLowerCase()}</td>
+            </tr>
+        </table>
+        
         <br/>
-        <h3>Purchase History</h3>
+        <h2>Purchase History</h2>
+
         <div className={CustomerAccountInfoCSS.purchasehistorylist}>
         
         

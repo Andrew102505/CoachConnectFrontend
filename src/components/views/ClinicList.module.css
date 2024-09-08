@@ -1,7 +1,7 @@
-.listingslist{
+.cliniclistingslist{
     display: grid;
     grid-template-columns: repeat(2, 280px);
-    gap: 100px 200px;
+    gap: 200px;
     justify-content: center;
 }
 

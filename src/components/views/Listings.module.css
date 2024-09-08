@@ -6,3 +6,9 @@
     background-size: cover;
 
 }
+.buttons{
+    display: grid;
+    grid-template-columns: repeat(3, 75px);
+    gap:14px;
+    justify-content: center;
+}

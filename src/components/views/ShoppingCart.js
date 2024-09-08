@@ -18,8 +18,12 @@ function removeSession(sessionId){
     localStorage.setItem('cart', JSON.stringify(cart));
     window.location.reload();
 }
+function clearCart(){
+    props.Clear();
+}
 return (
     <div>
+        {props.cart.length>0 && <button onClick = {clearCart} className={ShoppingCartCSS.clearentirecart}>Clear Entire Cart</button>}
         <div className={ShoppingCartCSS.shoppingcartlist}>
             {props.cart?.map((session)=>(
                 <div className={ShoppingCartCSS.sessionpreview} key = {session.id}>
@@ -33,7 +37,8 @@ return (
                 </div>
             ))}
             </div>
-            <button onClick = {checkout}>Checkout</button>
+            {props.cart?.length>0 && <button onClick = {checkout}>Checkout</button>}
+            {props.cart?.length==0 && <h2>Cart is Empty</h2>}
         </div>
     )
 }

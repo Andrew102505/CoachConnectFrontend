@@ -81,7 +81,7 @@ function App() {
     <Router>
     <div className="App">
       <Navbar user = {user} Clear = {Clear}/>
-      <button onClick = {Clear}>Clear</button>
+      
     <div className="content">
         <Switch>
           <Route exact path = "/">
@@ -139,7 +139,7 @@ function App() {
             <CoachListingDetails/>
           </Route>
           <Route exact path = "/shoppingcart">
-            <ShoppingCart cart = {cart}/>
+            <ShoppingCart cart = {cart} Clear = {Clear}/>
           </Route>
           <Route exact path = "/checkout">
             <Checkout cart = {cart} user = {user} Clear = {Clear}/>

@@ -1,11 +1,11 @@
-.listingslist{
+.sessionlist{
     display: grid;
     grid-template-columns: repeat(2, 280px);
-    gap: 100px 200px;
+    gap: 200px;
     justify-content: center;
 }
 
-.listingpreview{
+.sessionpreview{
     background-color: white;
     margin-top: 30px;
     margin-bottom: 25px;
@@ -31,4 +31,6 @@ span{
     color:white;
     font-weight: bold;
 }
-
+#full{
+    font-weight: bold;
+}

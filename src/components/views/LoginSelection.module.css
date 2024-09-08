@@ -1,0 +1,10 @@
+.loginselection{
+    display: grid;
+    grid-template-columns: repeat(1,150px);
+    gap:5px;
+    justify-content: center;
+    margin-top: 75px;
+}
+.loginselection button{
+    width:200px;
+}

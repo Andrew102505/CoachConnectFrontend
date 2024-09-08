@@ -16,7 +16,6 @@ const CoachListingsList = (props) => {
         <div className = {CoachListingsListCSS.listingslist}>
             {listings.map((listing)=>(
                 <div className={CoachListingsListCSS.listingpreview} key = {listing.id} onClick={()=>goToDetails(listing)}>
-                    
                     <h2 className={CoachListingsListCSS.title}>{listing.title}</h2>
                     <div className={CoachListingsListCSS.info}>
                     <p><span>Coach:</span> {listing.coach.firstName} {listing.coach.lastName}</p>

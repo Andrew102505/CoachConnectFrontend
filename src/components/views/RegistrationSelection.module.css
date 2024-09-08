@@ -1,0 +1,11 @@
+.registrationselection{
+    display: grid;
+    grid-template-columns: repeat(1, 0px);
+    gap:10px;
+    justify-content: center;
+    margin-top: 75px;
+    margin-right: 300px;
+}
+.registrationselection button{
+    width:300px;
+}

@@ -27,7 +27,7 @@ const Coaches = () => {
     }
     return (
         <div className = {CoachesCSS.coaches}>
-            <h2>Coaches</h2>
+            <h1>Coaches</h1>
             {coaches && <CoachList coaches = {coaches} reloadPage = {reloadPage}/>}
         </div>
     )

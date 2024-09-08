@@ -24,6 +24,7 @@ const AdminLogin = (props) => {
             history.push('/');
         }).catch(err=>{
             setInvalid(true);
+            setIsPending(false);
           });
     }
 
@@ -43,7 +44,7 @@ const AdminLogin = (props) => {
                 <input id = "password" type = "text" placeholder="Password" required value = {password} onChange={(e) => setPassword(e.target.value)}/>
                 <i className='bx bxs-lock-alt' ></i>
                 </div>
-                {invalid && <p>Invalid username and password</p>}
+                {invalid && <p className={AdminLoginCSS.invalid}>Invalid username and password. Try again.</p>}
                 {!isPending && <button >Sign in</button>}
                 {isPending && <button>Signing in</button>}
             </form>
