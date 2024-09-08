@@ -29,6 +29,7 @@ const ClinicList = (props) => {
                     <p><span>Coach:</span> {listing.coach.firstName} {listing.coach.lastName}</p>
                     <p><span>Area: </span>  {listing.location}</p>
                     <p><span>Location: </span> {listing.address}</p>
+                    <button onClick={() => goToDetails(listing)}>Details</button>
                     {sessionStorage.getItem('role')==='ADMIN' && <button onClick = {() => deleteListing(listing?.id)}>Delete</button>}
 
                 </div>
